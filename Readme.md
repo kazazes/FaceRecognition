@@ -1,7 +1,12 @@
 # Face Detection & Recognition on iOS
 This is an example iPhone application that performs face detection and recognition using the excellent [OpenCV framework](http://opencv.org).
 
-All dependencies are included within the repo, simply download and run it on your device. Obviously, the app needs the camera to function, and will not work on the simulator.
+First you need to initialise the (ELCImagePickerController)[https://github.com/elc/ELCImagePickerController] submodule:
+```
+$ git submodule update --init --recursive
+``` 
+
+Obviously, the app needs the camera to function, and will not work on the simulator.
 
 ## Usage
 The app was tested on iOS 6 using an iPhone 5. Other iOS versions and devices will probably work, but I can't say for sure.
@@ -10,9 +15,10 @@ The first step will be to train the model with some faces. Importing existing im
 
 1. Navigate to the "People" tab, and add a new person.
 2. Once the person shows up in the list, tap on their name.
-3. Instructions are provided on how to capture images of that person's face for later detection. The app uses the front-facing camera (the one pointing at you when you are using the device).
+3. Instructions are provided on how to capture images of that person's face for later detection. The app uses either camera.
 4. When capturing images, try and move the camera slightly to capture different angles of your face.
-5. Repeat for other people as necessary.
+5. Alternative you can pick images from the library. You should pick 10 with the face you want the app to learn.
+6. Repeat for other people as necessary.
 
 Once the app has at least one person in the database with face images, face recognition can occur.
 

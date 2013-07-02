@@ -16,5 +16,5 @@
 + (CGRect)faceToCGRect:(cv::Rect)face;
 + (UIImage *)UIImageFromMat:(cv::Mat)image;
 + (cv::Mat)cvMatFromUIImage:(UIImage *)image;
-
++ (cv::Mat)cvMatFromUIImage:(UIImage *)image usingColorSpace:(int)outputSpace;
 @end

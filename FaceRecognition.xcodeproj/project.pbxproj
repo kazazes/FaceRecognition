@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34368066177A418100341668 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34368056177A418100341668 /* ELCAlbumPickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		34368067177A418100341668 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 34368058177A418100341668 /* ELCAsset.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		34368068177A418100341668 /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3436805A177A418100341668 /* ELCAssetCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		34368069177A418100341668 /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3436805D177A418100341668 /* ELCAssetTablePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3436806A177A418100341668 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3436805F177A418100341668 /* ELCImagePickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3436806B177A418100341668 /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34368061177A418100341668 /* ELCAlbumPickerController.xib */; };
+		3436806C177A418100341668 /* ELCAssetPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34368062177A418100341668 /* ELCAssetPicker.xib */; };
+		3436806D177A418100341668 /* ELCAssetTablePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34368063177A418100341668 /* ELCAssetTablePicker.xib */; };
+		3436806E177A418100341668 /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 34368064177A418100341668 /* Overlay.png */; };
+		3436806F177A418100341668 /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34368065177A418100341668 /* Overlay@2x.png */; };
 		4C0B18CA1656724C00A95B1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0B18C91656724C00A95B1E /* AVFoundation.framework */; };
 		4C0B18CD1656766400A95B1E /* CaptureImagesViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B18CC1656766400A95B1E /* CaptureImagesViewController.mm */; };
 		4C0B18D116568A3800A95B1E /* FaceDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B18D016568A3800A95B1E /* FaceDetector.mm */; };
@@ -37,6 +47,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34368055177A418100341668 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
+		34368056177A418100341668 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
+		34368057177A418100341668 /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
+		34368058177A418100341668 /* ELCAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAsset.m; sourceTree = "<group>"; };
+		34368059177A418100341668 /* ELCAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetCell.h; sourceTree = "<group>"; };
+		3436805A177A418100341668 /* ELCAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetCell.m; sourceTree = "<group>"; };
+		3436805B177A418100341668 /* ELCAssetSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetSelectionDelegate.h; sourceTree = "<group>"; };
+		3436805C177A418100341668 /* ELCAssetTablePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetTablePicker.h; sourceTree = "<group>"; };
+		3436805D177A418100341668 /* ELCAssetTablePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetTablePicker.m; sourceTree = "<group>"; };
+		3436805E177A418100341668 /* ELCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerController.h; sourceTree = "<group>"; };
+		3436805F177A418100341668 /* ELCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCImagePickerController.m; sourceTree = "<group>"; };
+		34368061177A418100341668 /* ELCAlbumPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAlbumPickerController.xib; sourceTree = "<group>"; };
+		34368062177A418100341668 /* ELCAssetPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAssetPicker.xib; sourceTree = "<group>"; };
+		34368063177A418100341668 /* ELCAssetTablePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAssetTablePicker.xib; sourceTree = "<group>"; };
+		34368064177A418100341668 /* Overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Overlay.png; sourceTree = "<group>"; };
+		34368065177A418100341668 /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay@2x.png"; sourceTree = "<group>"; };
 		4C0B18C91656724C00A95B1E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4C0B18CB1656766400A95B1E /* CaptureImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureImagesViewController.h; sourceTree = "<group>"; };
 		4C0B18CC1656766400A95B1E /* CaptureImagesViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CaptureImagesViewController.mm; sourceTree = "<group>"; };
@@ -100,6 +126,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34368053177A416B00341668 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				34368054177A418100341668 /* ELCImagePicker */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		34368054177A418100341668 /* ELCImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				34368055177A418100341668 /* ELCAlbumPickerController.h */,
+				34368056177A418100341668 /* ELCAlbumPickerController.m */,
+				34368057177A418100341668 /* ELCAsset.h */,
+				34368058177A418100341668 /* ELCAsset.m */,
+				34368059177A418100341668 /* ELCAssetCell.h */,
+				3436805A177A418100341668 /* ELCAssetCell.m */,
+				3436805B177A418100341668 /* ELCAssetSelectionDelegate.h */,
+				3436805C177A418100341668 /* ELCAssetTablePicker.h */,
+				3436805D177A418100341668 /* ELCAssetTablePicker.m */,
+				3436805E177A418100341668 /* ELCImagePickerController.h */,
+				3436805F177A418100341668 /* ELCImagePickerController.m */,
+				34368060177A418100341668 /* Resources */,
+			);
+			name = ELCImagePicker;
+			path = Vendor/ELCImagePickerController/Classes/ELCImagePicker;
+			sourceTree = "<group>";
+		};
+		34368060177A418100341668 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				34368061177A418100341668 /* ELCAlbumPickerController.xib */,
+				34368062177A418100341668 /* ELCAssetPicker.xib */,
+				34368063177A418100341668 /* ELCAssetTablePicker.xib */,
+				34368064177A418100341668 /* Overlay.png */,
+				34368065177A418100341668 /* Overlay@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4C0B18CE1656780900A95B1E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +220,7 @@
 		4CBE4D7E1655CAC8004B63D9 /* FaceRecognition */ = {
 			isa = PBXGroup;
 			children = (
+				34368053177A416B00341668 /* Vendor */,
 				4CBE4D871655CAC8004B63D9 /* AppDelegate.h */,
 				4CBE4D881655CAC8004B63D9 /* AppDelegate.m */,
 				4CBE4D901655CAC8004B63D9 /* MainStoryboard.storyboard */,
@@ -240,6 +307,11 @@
 				4CBE4D8F1655CAC8004B63D9 /* Default-568h@2x.png in Resources */,
 				4CBE4D921655CAC8004B63D9 /* MainStoryboard.storyboard in Resources */,
 				4C0B18D61656944400A95B1E /* haarcascade_frontalface_alt2.xml in Resources */,
+				3436806B177A418100341668 /* ELCAlbumPickerController.xib in Resources */,
+				3436806C177A418100341668 /* ELCAssetPicker.xib in Resources */,
+				3436806D177A418100341668 /* ELCAssetTablePicker.xib in Resources */,
+				3436806E177A418100341668 /* Overlay.png in Resources */,
+				3436806F177A418100341668 /* Overlay@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +331,11 @@
 				4C0B18D116568A3800A95B1E /* FaceDetector.mm in Sources */,
 				4C0B18D416568BAA00A95B1E /* OpenCVData.mm in Sources */,
 				4C0B18DD16569E3200A95B1E /* RecognizeViewController.mm in Sources */,
+				34368066177A418100341668 /* ELCAlbumPickerController.m in Sources */,
+				34368067177A418100341668 /* ELCAsset.m in Sources */,
+				34368068177A418100341668 /* ELCAssetCell.m in Sources */,
+				34368069177A418100341668 /* ELCAssetTablePicker.m in Sources */,
+				3436806A177A418100341668 /* ELCImagePickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

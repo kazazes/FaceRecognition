@@ -14,6 +14,7 @@
 
 
 @interface RecognizeViewController ()
+- (IBAction)switchCameraClicked:(id)sender;
 
 @end
 
@@ -135,4 +136,15 @@
     self.featureLayer.frame = faceRect;
 }
 
+- (IBAction)switchCameraClicked:(id)sender {
+    [self.videoCamera stop];
+    
+    if (self.videoCamera.defaultAVCaptureDevicePosition == AVCaptureDevicePositionFront) {
+        self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
+    } else {
+        self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
+    }
+    
+    [self.videoCamera start];
+}
 @end

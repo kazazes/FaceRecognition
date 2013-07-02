@@ -71,6 +71,11 @@
 
 + (cv::Mat)cvMatFromUIImage:(UIImage *)image
 {
+    return [OpenCVData cvMatFromUIImage:image usingColorSpace:CV_RGB2GRAY];
+}
+
++ (cv::Mat)cvMatFromUIImage:(UIImage *)image usingColorSpace:(int)outputSpace
+{
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
     CGFloat cols = image.size.width;
     CGFloat rows = image.size.height;
@@ -92,7 +97,7 @@
     CGColorSpaceRelease(colorSpace);
     
     cv::Mat finalOutput;
-    cvtColor(cvMat, finalOutput, CV_RGB2GRAY);
+    cvtColor(cvMat, finalOutput, outputSpace);
     
     return finalOutput;
 }
