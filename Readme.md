@@ -9,7 +9,7 @@ $ git submodule update --init --recursive
 Obviously, the app needs the camera to function, and will not work on the simulator.
 
 ## Usage
-The app was tested on iOS 6 using an iPhone 5. Other iOS versions and devices will probably work, but I can't say for sure.
+The app was tested on iOS 6 using an iPhone 5. Other iOS versions and devices will probably work, but I can't say for sure. On iPhone 4 you will have to play with the spacing of the buttons.
 
 The first step will be to train the model with some faces. Importing existing images is not supported for various reasons, so you will need to capture face images using the camera. The steps to perform this are as follows:
 
