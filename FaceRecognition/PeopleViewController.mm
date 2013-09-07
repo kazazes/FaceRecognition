@@ -18,7 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.faceRecognizer = [[CustomFaceRecognizer alloc] init];
+    self.faceRecognizer = [[VotingFaceRecognizer alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -44,6 +44,10 @@
 		4CBE4D8D1655CAC8004B63D9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CBE4D8C1655CAC8004B63D9 /* Default@2x.png */; };
 		4CBE4D8F1655CAC8004B63D9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CBE4D8E1655CAC8004B63D9 /* Default-568h@2x.png */; };
 		4CBE4D921655CAC8004B63D9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CBE4D901655CAC8004B63D9 /* MainStoryboard.storyboard */; };
+		4F7364A817DAA5BE0002A3AA /* haarcascade_frontalface_alt_tree.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364A417DAA5BD0002A3AA /* haarcascade_frontalface_alt_tree.xml */; };
+		4F7364A917DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364A517DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml */; };
+		4F7364AB17DAA5BE0002A3AA /* haarcascade_frontalface_default.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364A717DAA5BE0002A3AA /* haarcascade_frontalface_default.xml */; };
+		4F7364AE17DAA6DD0002A3AA /* VotingFaceRecognizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364AD17DAA6DD0002A3AA /* VotingFaceRecognizer.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +105,11 @@
 		4CBE4D8C1655CAC8004B63D9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4CBE4D8E1655CAC8004B63D9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4CBE4D911655CAC8004B63D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		4F7364A417DAA5BD0002A3AA /* haarcascade_frontalface_alt_tree.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt_tree.xml; sourceTree = "<group>"; };
+		4F7364A517DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt.xml; sourceTree = "<group>"; };
+		4F7364A717DAA5BE0002A3AA /* haarcascade_frontalface_default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_default.xml; sourceTree = "<group>"; };
+		4F7364AC17DAA6DD0002A3AA /* VotingFaceRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VotingFaceRecognizer.h; sourceTree = "<group>"; };
+		4F7364AD17DAA6DD0002A3AA /* VotingFaceRecognizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VotingFaceRecognizer.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,10 +237,15 @@
 				4C0B18D016568A3800A95B1E /* FaceDetector.mm */,
 				4C9DEA611656694F003DBFB5 /* CustomFaceRecognizer.h */,
 				4C9DEA621656694F003DBFB5 /* CustomFaceRecognizer.mm */,
+				4F7364AC17DAA6DD0002A3AA /* VotingFaceRecognizer.h */,
+				4F7364AD17DAA6DD0002A3AA /* VotingFaceRecognizer.mm */,
 				4C0B18CE1656780900A95B1E /* View Controllers */,
 				4CBE4D7F1655CAC8004B63D9 /* Supporting Files */,
 				4C0B18D216568BAA00A95B1E /* OpenCVData.h */,
 				4C0B18D316568BAA00A95B1E /* OpenCVData.mm */,
+				4F7364A417DAA5BD0002A3AA /* haarcascade_frontalface_alt_tree.xml */,
+				4F7364A517DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml */,
+				4F7364A717DAA5BE0002A3AA /* haarcascade_frontalface_default.xml */,
 				4C0B18D51656944400A95B1E /* haarcascade_frontalface_alt2.xml */,
 			);
 			path = FaceRecognition;
@@ -312,6 +326,9 @@
 				3436806D177A418100341668 /* ELCAssetTablePicker.xib in Resources */,
 				3436806E177A418100341668 /* Overlay.png in Resources */,
 				3436806F177A418100341668 /* Overlay@2x.png in Resources */,
+				4F7364A817DAA5BE0002A3AA /* haarcascade_frontalface_alt_tree.xml in Resources */,
+				4F7364A917DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml in Resources */,
+				4F7364AB17DAA5BE0002A3AA /* haarcascade_frontalface_default.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +353,7 @@
 				34368068177A418100341668 /* ELCAssetCell.m in Sources */,
 				34368069177A418100341668 /* ELCAssetTablePicker.m in Sources */,
 				3436806A177A418100341668 /* ELCImagePickerController.m in Sources */,
+				4F7364AE17DAA6DD0002A3AA /* VotingFaceRecognizer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +438,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceRecognition/FaceRecognition-Prefix.pch";
 				INFOPLIST_FILE = "FaceRecognition/FaceRecognition-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -435,7 +455,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceRecognition/FaceRecognition-Prefix.pch";
 				INFOPLIST_FILE = "FaceRecognition/FaceRecognition-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

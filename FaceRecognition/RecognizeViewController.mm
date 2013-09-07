@@ -25,7 +25,7 @@
     [super viewDidLoad];
 	
     self.faceDetector = [[FaceDetector alloc] init];
-    self.faceRecognizer = [[CustomFaceRecognizer alloc] initWithEigenFaceRecognizer];
+    self.faceRecognizer = [[VotingFaceRecognizer alloc] init];
     
     [self setupCamera];
 }
@@ -63,7 +63,7 @@
 - (void)processImage:(cv::Mat&)image
 {
     // Only process every CAPTURE_FPS'th frame (every 1s)
-    if (self.frameNum == CAPTURE_FPS) {
+    if (self.frameNum == 5) {
         [self parseFaces:[self.faceDetector facesFromImage:image] forImage:image];
         self.frameNum = 0;
     }
@@ -94,14 +94,16 @@
         // Match found
         if ([match objectForKey:@"personID"] != [NSNumber numberWithInt:-1]) {
             message = [match objectForKey:@"personName"];
+            confidence = [match objectForKey:@"confidence"];
             highlightColor = [[UIColor greenColor] CGColor];
             
             NSNumberFormatter *confidenceFormatter = [[NSNumberFormatter alloc] init];
             [confidenceFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
             confidenceFormatter.maximumFractionDigits = 2;
             
-            confidence = [NSString stringWithFormat:@"Confidence: %@",
-                          [confidenceFormatter stringFromNumber:[match objectForKey:@"confidence"]]];
+            //confidence = [NSString stringWithFormat:@"%@ Confidence: %@", message,
+                        //[confidenceFormatter stringFromNumber:[match objectForKey:@"confidence"]]];
+            confidence = [NSString stringWithFormat:@"%@ %@", message, confidence];
         }
     }
     
@@ -130,10 +132,11 @@
     }
     
     [self.imageView.layer addSublayer:self.featureLayer];
+    CGRect scaledRect = [self scaleRect:faceRect];
     
     self.featureLayer.hidden = NO;
     self.featureLayer.borderColor = color;
-    self.featureLayer.frame = faceRect;
+    self.featureLayer.frame = scaledRect;
 }
 
 - (IBAction)switchCameraClicked:(id)sender {
@@ -146,5 +149,51 @@
     }
     
     [self.videoCamera start];
+}
+
+-(CGRect)scaleRect:(CGRect)rect
+{
+    CGSize sizeMultiple = [self imageSizeAfterAspectFit];
+
+    return CGRectMake(rect.origin.x * sizeMultiple.width,
+                      rect.origin.y * sizeMultiple.height,
+                      rect.size.width * sizeMultiple.width,
+                      rect.size.height * sizeMultiple.height);
+}
+
+-(CGSize)imageSizeAfterAspectFit {
+    
+    
+    float newwidth;
+    float newheight;
+    UIImageView *imageView = self.imageView;
+    CGSize imageSize = CGSizeMake(288, 352);
+    
+    if (imageSize.height>=imageSize.width){
+        newheight = imageView.frame.size.height;
+        newwidth = (imageSize.width/imageSize.height) * newheight;
+        
+        if(newwidth>imageView.frame.size.width){
+            float diff=imageView.frame.size.width-newwidth;
+            newheight=newheight+diff/newheight*newheight;
+            newwidth=imageView.frame.size.width;
+        }
+        
+    }
+    else{
+        newwidth=imageView.frame.size.width;
+        newheight=(imageSize.height/imageSize.width)*newwidth;
+        
+        if(newheight>imageView.frame.size.height){
+            float diff=imageView.frame.size.height-newheight;
+            newwidth=newwidth+diff/newwidth*newwidth;
+            newheight=imageView.frame.size.height;
+        }
+    }
+    
+    return CGSizeMake(newwidth/288, newheight/352);
+    
+}
+- (IBAction)switchCamera:(UIBarButtonItem *)sender {
 }
 @end

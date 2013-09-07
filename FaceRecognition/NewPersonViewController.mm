@@ -7,7 +7,7 @@
 //
 
 #import "NewPersonViewController.h"
-#import "CustomFaceRecognizer.h"
+#import "VotingFaceRecognizer.h"
 
 @interface NewPersonViewController ()
 
@@ -22,7 +22,7 @@
 
 - (IBAction)savePerson:(id)sender
 {
-    CustomFaceRecognizer *faceRecognizer = [[CustomFaceRecognizer alloc] init];
+    VotingFaceRecognizer *faceRecognizer = [[VotingFaceRecognizer alloc] init];
     [faceRecognizer newPersonWithName:self.nameField.text];
     
     [self.navigationController popViewControllerAnimated:YES];
