@@ -8,15 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <opencv2/highgui/cap_ios.h>
-#import <sqlite3.h>
 
 #import "CustomFaceRecognizer.h"
 #import "MultiResult.h"
 
 @interface VotingFaceRecognizer : NSObject
-{
-    sqlite3 *_db;
-}
 
 @property (nonatomic, strong) NSMutableArray *faceRecognizers;
 @property (nonatomic) BOOL loaded;

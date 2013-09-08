@@ -105,7 +105,7 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
         [self noFaceToDisplay];
         return;
     }
-    
+    self.featureLayer.hidden = NO;
     // We only care about the first face
     cv::Rect face = faces[0];
     
@@ -121,6 +121,10 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self highlightFace:[OpenCVData faceToCGRect:face] withColor:highlightColor];
         [self.personName setText: match.personName];
+        if (match.personID != -1)
+            self.personLabel.hidden = NO;
+        else
+            self.personLabel.hidden = YES;
     });
 }
 
@@ -168,8 +172,6 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
                                                                  200,
                                                                  30);
                          }];
-        self.featureLayer.hidden = NO;
-        self.personLabel.hidden = NO;
         self.lastFace = scaledRect;
     });
 }

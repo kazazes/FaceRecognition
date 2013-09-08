@@ -15,9 +15,9 @@
     return [[NSData alloc] initWithBytes:cvMat.data length:cvMat.elemSize() * cvMat.total()];
 }
 
-+ (cv::Mat)dataToMat:(NSData *)data width:(NSNumber *)width height:(NSNumber *)height
++ (cv::Mat)dataToMat:(NSData *)data width:(int)width height:(int)height
 {
-    cv::Mat output = cv::Mat([width integerValue], [height integerValue], CV_8UC1);
+    cv::Mat output = cv::Mat(width, height, CV_8UC1);
     output.data = (unsigned char*)data.bytes;
     
     return output;
@@ -69,6 +69,9 @@
     return finalImage;
 }
 
+
+
+
 + (cv::Mat)cvMatFromUIImage:(UIImage *)image
 {
     return [OpenCVData cvMatFromUIImage:image usingColorSpace:CV_RGB2GRAY];
@@ -94,12 +97,16 @@
     
     CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), image.CGImage);
     CGContextRelease(contextRef);
-    CGColorSpaceRelease(colorSpace);
+    //CGColorSpaceRelease(colorSpace);
     
     cv::Mat finalOutput;
     cvtColor(cvMat, finalOutput, outputSpace);
     
     return finalOutput;
+}
+
++ (void)cvImageNormalize:(cv::Mat)image {
+    
 }
 
 @end

@@ -8,6 +8,9 @@
 
 #import "VotingFaceRecognizer.h"
 #import "OpenCVData.h"
+#include "glob.h"
+
+#define PERSON_DIR ([self combinePath:[self docPath] with:@"persons"])
 
 @implementation VotingFaceRecognizer
 
@@ -15,68 +18,99 @@
 {
     self = [super init];
     if (self) {
-        self.loaded = NO;
-        [self loadDatabase];
+        [self makeDirectory:PERSON_DIR];
         self.lastID = -1;
         
         self.faceRecognizers = [[NSMutableArray alloc] init];
         NSLog(@"Creating Recognizers");
-        [self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithEigenFaceRecognizer]];
-        [self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithFisherFaceRecognizer]];
-        [self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithLBPHFaceRecognizer]];
+        //[self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithMethod:@"Eigen"]];
+        [self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithMethod:@"Fisher"]];
+        //[self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithMethod:@"LBPH"]];
         NSLog(@"CREATED %@", self.faceRecognizers);
     }
     return self;
 }
 
-- (void)loadDatabase
-{
-    if (sqlite3_open([[self dbPath] UTF8String], &_db) != SQLITE_OK) {
-        NSLog(@"Cannot open the database.");
-    }
-    
-    [self createTablesIfNeeded];
+- (NSString*)docPath {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 }
 
-- (NSString *)dbPath
+- (NSString*)combinePath:(NSString*)path with:(NSString*)path2 {
+    return [path stringByAppendingPathComponent:path2];
+}
+
+-(NSArray *)listFileAtPath:(NSString *)path
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [paths objectAtIndex:0];
-    return [documentDirectory stringByAppendingPathComponent:@"training-data.sqlite"];
+    NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
+    return directoryContent;
+}
+
+- (NSString*)personImagePath:(int)personID {
+    return [PERSON_DIR stringByAppendingPathComponent:[NSString stringWithFormat:@"%d", personID]];
+}
+
+- (NSString*)personNameFilePath:(int)personID {
+    return [[self personImagePath:personID] stringByAppendingPathComponent:@"name"];
+}
+
+- (NSString*)personName:(int)personID {
+    return [NSString stringWithContentsOfFile:[self personNameFilePath:personID] encoding:NSUTF8StringEncoding error:nil];
+}
+
+- (NSArray*)globListing:(NSString*)pattern {
+    NSMutableArray* files = [NSMutableArray array];
+    glob_t gt;
+    const char* g_pattern = [pattern cStringUsingEncoding:NSUTF8StringEncoding];
+    if (glob(g_pattern, 0, NULL, &gt) == 0) {
+        int i;
+        for (i=0; i<gt.gl_matchc; i++) {
+            [files addObject: [NSString stringWithCString:gt.gl_pathv[i] encoding:NSUTF8StringEncoding]];
+        }
+    }
+    globfree(&gt);
+    return [NSArray arrayWithArray: files];
+}
+
+- (BOOL)pathExists:(NSString*)path {
+    return [[NSFileManager defaultManager] fileExistsAtPath:path];
+}
+
+- (NSArray*)globListing:(NSString*)pattern inPath:(NSString*)path {
+    return [self globListing:[path stringByAppendingPathComponent:pattern]];
+}
+
+- (BOOL)makeDirectory:(NSString*)path {
+    return [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error: NULL];
+}
+
+- (BOOL)deleteFile:(NSString*)path {
+    return [[NSFileManager defaultManager]removeItemAtPath:path error:nil];
 }
 
 - (int)newPersonWithName:(NSString *)name
 {
-    const char *newPersonSQL = "INSERT INTO people (name) VALUES (?)";
-    sqlite3_stmt *statement;
-    
-    if (sqlite3_prepare_v2(_db, newPersonSQL, -1, &statement, nil) == SQLITE_OK) {
-        sqlite3_bind_text(statement, 1, [name UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_step(statement);
+    NSString* person_path;
+    int i = 1;
+    while (YES) {
+        person_path = [self personImagePath:i];
+        if (![self pathExists:person_path]) {
+            break;
+        }
+        i++;
     }
-    
-    sqlite3_finalize(statement);
-    
-    return sqlite3_last_insert_rowid(_db);
+    [self makeDirectory:person_path];
+    [name writeToFile:[self personNameFilePath:i] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    return i;
 }
 
-- (NSMutableArray *)getAllPeople
-{
+- (NSMutableArray *)getAllPeople {
+    NSLog(@"%@", [self globListing:@"*" inPath:PERSON_DIR]);
     NSMutableArray *results = [[NSMutableArray alloc] init];
-    
-    const char *findPeopleSQL = "SELECT id, name FROM people ORDER BY name";
-    sqlite3_stmt *statement;
-    
-    if (sqlite3_prepare_v2(_db, findPeopleSQL, -1, &statement, nil) == SQLITE_OK) {
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            NSNumber *personID = [NSNumber numberWithInt:sqlite3_column_int(statement, 0)];
-            NSString *personName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 1)];
-            
-            [results addObject:@{@"id": personID, @"name": personName}];
-        }
+    for (NSString* person_image_path in [self globListing:@"*" inPath:PERSON_DIR]) {
+        int personID = [[person_image_path lastPathComponent] intValue];
+        NSString* personName = [self personName:personID];
+        [results addObject:@{@"id": @(personID), @"name": personName}];
     }
-    
-    sqlite3_finalize(statement);
     
     return results;
 }
@@ -84,48 +118,40 @@
 
 - (BOOL)trainModel
 {
-    if (!self.loaded) {
-        BOOL did_load = NO;
-        
-        for (CustomFaceRecognizer* recognizer in self.faceRecognizers) {
-            did_load = [recognizer loadModel];
-            if (!did_load) {
-                break;
-            }
-        }
-        if (did_load) {
-            self.loaded = YES;
-            return YES;
-        }
-    }
-    NSLog(@"Training Models from sqlite");
+//    if (!self.loaded) {
+//        BOOL did_load = NO;
+//        
+//        for (CustomFaceRecognizer* recognizer in self.faceRecognizers) {
+//            did_load = [recognizer loadModel];
+//            if (!did_load) {
+//                break;
+//            }
+//        }
+//        if (did_load) {
+//            self.loaded = YES;
+//            return YES;
+//        }
+//    }
+    NSLog(@"Training Models from images");
     
     std::vector<cv::Mat> images;
     std::vector<int> labels;
     
-    const char* selectSQL = "SELECT person_id, image FROM images";
-    sqlite3_stmt *statement;
+    NSArray* people = [self getAllPeople];
     
-    if (sqlite3_prepare_v2(_db, selectSQL, -1, &statement, nil) == SQLITE_OK) {
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            int personID = sqlite3_column_int(statement, 0);
-            
-            // First pull out the image into NSData
-            int imageSize = sqlite3_column_bytes(statement, 1);
-            NSData *imageData = [NSData dataWithBytes:sqlite3_column_blob(statement, 1) length:imageSize];
-            
-            // Then convert NSData to a cv::Mat. Images are standardized into 100x100
-            cv::Mat faceData = [OpenCVData dataToMat:imageData
-                                               width:[NSNumber numberWithInt:100]
-                                              height:[NSNumber numberWithInt:100]];
-            
-            // Put this image into the model
+    for (NSDictionary* person in people) {
+        int personID = INT(person[@"id"]);
+        //NSArray* personName = person[@"name"];
+        
+        for (NSString* pic_fn in [self globListing:@"*.mat" inPath:[self personImagePath:personID]]) {
+            NSData* imageData = [NSData dataWithContentsOfFile:pic_fn];
+            cv::Mat faceData = [OpenCVData dataToMat:imageData width:100 height:100];
+
             images.push_back(faceData);
             labels.push_back(personID);
         }
+        
     }
-    
-    sqlite3_finalize(statement);
     
     if (images.size() > 0 && labels.size() > 0) {
         dispatch_group_t training_group = dispatch_group_create();
@@ -147,15 +173,7 @@
 
 - (void)forgetAllFacesForPersonID:(int)personID
 {
-    const char* deleteSQL = "DELETE FROM images WHERE person_id = ?";
-    sqlite3_stmt *statement;
-    
-    if (sqlite3_prepare_v2(_db, deleteSQL, -1, &statement, nil) == SQLITE_OK) {
-        sqlite3_bind_int(statement, 1, personID);
-        sqlite3_step(statement);
-    }
-    
-    sqlite3_finalize(statement);
+    [self deleteFile:[self personImagePath:personID]];
 }
 
 - (void)learnFace:(cv::Rect)face ofPersonID:(int)personID fromImage:(cv::Mat&)image
@@ -163,16 +181,10 @@
     cv::Mat faceData = [self pullStandardizedFace:face fromImage:image];
     NSData *serialized = [OpenCVData serializeCvMat:faceData];
     
-    const char* insertSQL = "INSERT INTO images (person_id, image) VALUES (?, ?)";
-    sqlite3_stmt *statement;
+    long time = floor([[NSDate date] timeIntervalSince1970] * 1000000);
+    NSString* fn = [[self personImagePath:personID] stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.mat", time]];
     
-    if (sqlite3_prepare_v2(_db, insertSQL, -1, &statement, nil) == SQLITE_OK) {
-        sqlite3_bind_int(statement, 1, personID);
-        sqlite3_bind_blob(statement, 2, serialized.bytes, serialized.length, SQLITE_TRANSIENT);
-        sqlite3_step(statement);
-    }
-    
-    sqlite3_finalize(statement);
+    [serialized writeToFile:fn atomically:YES];
 }
 
 - (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image
@@ -213,45 +225,13 @@
     
     // If a match was found, lookup the person's name
     if (personID != -1) {
-        const char* selectSQL = "SELECT name FROM people WHERE id = ?";
-        sqlite3_stmt *statement;
-        
-        if (sqlite3_prepare_v2(_db, selectSQL, -1, &statement, nil) == SQLITE_OK) {
-            sqlite3_bind_int(statement, 1, personID);
-            
-            if (sqlite3_step(statement) != SQLITE_DONE) {
-                results.personName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 0)];
-            }
-        }
-        
-        sqlite3_finalize(statement);
+        results.personName = [self personName:personID];
     }
-    
     
     self.lastID = results.personID;
     return results;
 }
 
-- (void)createTablesIfNeeded
-{
-    // People table
-    const char *peopleSQL = "CREATE TABLE IF NOT EXISTS people ("
-    "'id' integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-    "'name' text NOT NULL)";
-    
-    if (sqlite3_exec(_db, peopleSQL, nil, nil, nil) != SQLITE_OK) {
-        NSLog(@"The people table could not be created.");
-    }
-    
-    // Images table
-    const char *imagesSQL = "CREATE TABLE IF NOT EXISTS images ("
-    "'id' integer NOT NULL PRIMARY KEY AUTOINCREMENT, "
-    "'person_id' integer NOT NULL, "
-    "'image' blob NOT NULL)";
-    
-    if (sqlite3_exec(_db, imagesSQL, nil, nil, nil) != SQLITE_OK) {
-        NSLog(@"The images table could not be created.");
-    }
-}
+
 
 @end

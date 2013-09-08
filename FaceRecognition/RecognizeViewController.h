@@ -15,6 +15,8 @@
 
 - (void)setupCamera;
 - (void)highlightFace:(CGRect)faceRect withColor:(CGColor *)color;
+- (void)noFaceToDisplay;
+- (IBAction)switchCameraClicked:(id)sender;
 
 @property (nonatomic) CGRect lastFace;
 

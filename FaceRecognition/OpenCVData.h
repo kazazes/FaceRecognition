@@ -12,7 +12,7 @@
 @interface OpenCVData : NSObject
 
 + (NSData *)serializeCvMat:(cv::Mat&)cvMat;
-+ (cv::Mat)dataToMat:(NSData *)data width:(NSNumber *)width height:(NSNumber *)height;
++ (cv::Mat)dataToMat:(NSData *)data width:(int)width height:(int)height;
 + (CGRect)faceToCGRect:(cv::Rect)face;
 + (UIImage *)UIImageFromMat:(cv::Mat)image;
 + (cv::Mat)cvMatFromUIImage:(UIImage *)image;

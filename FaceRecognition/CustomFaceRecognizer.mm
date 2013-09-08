@@ -13,29 +13,30 @@
 @implementation CustomFaceRecognizer
 
 
-- (id)initWithEigenFaceRecognizer
+- (id)init
 {
     self = [super init];
-    _model = cv::createEigenFaceRecognizer();
-    self.method = @"Eigen";
+    if (self) {
+        self.trained = NO;
+    }
     return self;
 }
 
-- (id)initWithFisherFaceRecognizer
-{
-    self = [super init];
-    _model = cv::createFisherFaceRecognizer();
-    self.method = @"Fisher";
-
-    return self;
-}
-
-- (id)initWithLBPHFaceRecognizer
-{
-    self = [super init];
-    _model = cv::createLBPHFaceRecognizer();
-    self.method = @"LBPH";
-
+- (id)initWithMethod:(NSString*)method {
+    self = [self init];
+    
+    if (self) {
+        self.method = method;
+        
+        if ([method isEqualToString:@"Eigen"])
+            _model = cv::createEigenFaceRecognizer();
+        else if ([method isEqualToString:@"Fisher"])
+            _model = cv::createFisherFaceRecognizer();
+        else if ([method isEqualToString:@"LBPH"])
+            _model = cv::createLBPHFaceRecognizer();
+        else
+            [NSException raise:@"Illegal recognition method." format:@"%@ is not a valid recognition method.", method];
+    }
     return self;
 }
 
@@ -54,6 +55,7 @@
     NSLog(@"LOADING MODEL %@", fn);
     if ([[NSFileManager defaultManager] fileExistsAtPath:fn]) {
         _model->load([fn cStringUsingEncoding:NSASCIIStringEncoding]);
+        self.trained = YES;
         return YES;
     }
     return NO;
@@ -61,8 +63,10 @@
 
 - (BOOL)trainModel:(std::vector<cv::Mat>)images withLabels:(std::vector<int>)labels
 {
-    if (images.size() > 0 && labels.size() > 0) {
+    if (images.size() > 1 && labels.size() > 1) {
+        NSLog(@"%ld %ld", images.size(), labels.size());
         _model->train(images, labels);
+        self.trained = YES;
         return YES;
     }
     else {
@@ -87,7 +91,8 @@
 {
     int predictedLabel = -1;
     double confidence = 0.0;
-    _model->predict([self pullStandardizedFace:face fromImage:image], predictedLabel, confidence);
+    if (self.trained)
+        _model->predict([self pullStandardizedFace:face fromImage:image], predictedLabel, confidence);
     
     return [[RecognitionResult alloc] initWithPersonID:predictedLabel confidence:confidence method:self.method];
 }

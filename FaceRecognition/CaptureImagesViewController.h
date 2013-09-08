@@ -14,18 +14,12 @@
 
 @interface CaptureImagesViewController : RecognizeViewController <CvVideoCameraDelegate>
 
+- (void)parseFaces:(const std::vector<cv::Rect> &)faces forImage:(cv::Mat&)image;
+- (bool)learnFace:(const std::vector<cv::Rect> &)faces forImage:(cv::Mat&)image;
+
 @property (nonatomic, strong) IBOutlet UIButton *cameraButton;
-@property (strong, nonatomic) IBOutlet UIButton *libraryButton;
 @property (nonatomic, strong) NSNumber *personID;
-@property (nonatomic, strong) FaceDetector *faceDetector;
-@property (nonatomic, strong) VotingFaceRecognizer *faceRecognizer;
-//@property (nonatomic, strong) CALayer *featureLayer;
 @property (nonatomic) NSInteger frameNum;
 @property (nonatomic) NSInteger numPicsTaken;
-//@property (strong, nonatomic) IBOutlet UIScrollView *imageScrollView;
-
-- (IBAction)cameraButtonClicked:(id)sender;
-//- (IBAction)libraryButtonClicked:(id)sender;
-- (IBAction)switchCameraButtonClicked:(id)sender;
 
 @end

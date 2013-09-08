@@ -109,12 +109,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Capture Images" id="JOo-Eo-Ksy">
-                        <barButtonItem key="leftBarButtonItem" title="Start" id="aYO-0J-SvS">
-                            <connections>
-                                <action selector="cameraButtonClicked:" destination="TbI-1Z-elj" id="TYl-uc-iRd"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Switch" id="xx3-gH-0oU"/>
+                        <barButtonItem key="rightBarButtonItem" title="Switch Camera" id="xx3-gH-0oU"/>
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="yVg-sT-McM" id="CR9-kI-nDS"/>
@@ -207,7 +202,6 @@
                 <relationship kind="action" name="cameraButtonClicked:"/>
                 <relationship kind="action" name="switchCameraButtonClicked:"/>
                 <relationship kind="outlet" name="cameraButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="instructionsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="libraryButton" candidateClass="UIButton"/>
             </relationships>
         </class>
@@ -224,11 +218,12 @@
         <class className="RecognizeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RecognizeViewController.h"/>
             <relationships>
-                <relationship kind="action" name="switchCamera:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="switchCameraClicked:"/>
                 <relationship kind="outlet" name="confidenceLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="instructionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="personLabel" candidateClass="UIView"/>
+                <relationship kind="outlet" name="personName" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="switchCameraButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
