@@ -40,6 +40,7 @@
 		4F7364B117DC22240002A3AA /* RecognitionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364B017DC22240002A3AA /* RecognitionResult.m */; };
 		4F7364B417DC2AF70002A3AA /* MultiResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364B317DC2AF70002A3AA /* MultiResult.m */; };
 		4F7364BB17DC4F7C0002A3AA /* PersonLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */; };
+		4F7364C217DCA5910002A3AA /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7364C117DCA5910002A3AA /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		4F7364B217DC2AF70002A3AA /* MultiResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiResult.h; sourceTree = "<group>"; };
 		4F7364B317DC2AF70002A3AA /* MultiResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiResult.m; sourceTree = "<group>"; };
 		4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonLabel.xib; sourceTree = "<group>"; };
+		4F7364C117DCA5910002A3AA /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				4CBE4D791655CAC8004B63D9 /* UIKit.framework in Frameworks */,
 				4CBE4D7B1655CAC8004B63D9 /* Foundation.framework in Frameworks */,
 				4CBE4D7D1655CAC8004B63D9 /* CoreGraphics.framework in Frameworks */,
+				4F7364C217DCA5910002A3AA /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +152,7 @@
 		4CBE4D771655CAC8004B63D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F7364C117DCA5910002A3AA /* opencv2.framework */,
 				4C9DEA5D165668CD003DBFB5 /* libsqlite3.dylib */,
 				4C0B18C91656724C00A95B1E /* AVFoundation.framework */,
 				4C9DEA5B165668C0003DBFB5 /* Accelerate.framework */,
