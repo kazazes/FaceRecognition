@@ -50,6 +50,7 @@
 		4F7364AE17DAA6DD0002A3AA /* VotingFaceRecognizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364AD17DAA6DD0002A3AA /* VotingFaceRecognizer.mm */; };
 		4F7364B117DC22240002A3AA /* RecognitionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364B017DC22240002A3AA /* RecognitionResult.m */; };
 		4F7364B417DC2AF70002A3AA /* MultiResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364B317DC2AF70002A3AA /* MultiResult.m */; };
+		4F7364BB17DC4F7C0002A3AA /* PersonLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		4F7364B017DC22240002A3AA /* RecognitionResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognitionResult.m; sourceTree = "<group>"; };
 		4F7364B217DC2AF70002A3AA /* MultiResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiResult.h; sourceTree = "<group>"; };
 		4F7364B317DC2AF70002A3AA /* MultiResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiResult.m; sourceTree = "<group>"; };
+		4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonLabel.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 				4F7364A517DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml */,
 				4F7364A717DAA5BE0002A3AA /* haarcascade_frontalface_default.xml */,
 				4C0B18D51656944400A95B1E /* haarcascade_frontalface_alt2.xml */,
+				4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */,
 			);
 			path = FaceRecognition;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				4F7364A817DAA5BE0002A3AA /* haarcascade_frontalface_alt_tree.xml in Resources */,
 				4F7364A917DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml in Resources */,
 				4F7364AB17DAA5BE0002A3AA /* haarcascade_frontalface_default.xml in Resources */,
+				4F7364BB17DC4F7C0002A3AA /* PersonLabel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
