@@ -22,7 +22,6 @@
 		4C9DEA5A165668BB003DBFB5 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA59165668BB003DBFB5 /* AssetsLibrary.framework */; };
 		4C9DEA5C165668C0003DBFB5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA5B165668C0003DBFB5 /* Accelerate.framework */; };
 		4C9DEA5E165668CD003DBFB5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA5D165668CD003DBFB5 /* libsqlite3.dylib */; };
-		4C9DEA60165668E2003DBFB5 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA5F165668E2003DBFB5 /* opencv2.framework */; };
 		4C9DEA631656694F003DBFB5 /* CustomFaceRecognizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DEA621656694F003DBFB5 /* CustomFaceRecognizer.mm */; };
 		4CBE4D791655CAC8004B63D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBE4D781655CAC8004B63D9 /* UIKit.framework */; };
 		4CBE4D7B1655CAC8004B63D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBE4D7A1655CAC8004B63D9 /* Foundation.framework */; };
@@ -65,7 +64,6 @@
 		4C9DEA59165668BB003DBFB5 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4C9DEA5B165668C0003DBFB5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		4C9DEA5D165668CD003DBFB5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		4C9DEA5F165668E2003DBFB5 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		4C9DEA611656694F003DBFB5 /* CustomFaceRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFaceRecognizer.h; sourceTree = "<group>"; };
 		4C9DEA621656694F003DBFB5 /* CustomFaceRecognizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CustomFaceRecognizer.mm; sourceTree = "<group>"; };
 		4CBE4D741655CAC8004B63D9 /* FaceRecognition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceRecognition.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,7 +108,6 @@
 				4CBE4D791655CAC8004B63D9 /* UIKit.framework in Frameworks */,
 				4CBE4D7B1655CAC8004B63D9 /* Foundation.framework in Frameworks */,
 				4CBE4D7D1655CAC8004B63D9 /* CoreGraphics.framework in Frameworks */,
-				4C9DEA60165668E2003DBFB5 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +149,6 @@
 		4CBE4D771655CAC8004B63D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4C9DEA5F165668E2003DBFB5 /* opencv2.framework */,
 				4C9DEA5D165668CD003DBFB5 /* libsqlite3.dylib */,
 				4C0B18C91656724C00A95B1E /* AVFoundation.framework */,
 				4C9DEA5B165668C0003DBFB5 /* Accelerate.framework */,
