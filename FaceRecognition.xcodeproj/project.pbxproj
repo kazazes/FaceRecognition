@@ -171,35 +171,25 @@
 		4CBE4D7E1655CAC8004B63D9 /* FaceRecognition */ = {
 			isa = PBXGroup;
 			children = (
-				4CBE4D871655CAC8004B63D9 /* AppDelegate.h */,
-				4F7364AF17DC22240002A3AA /* RecognitionResult.h */,
-				4F7364B017DC22240002A3AA /* RecognitionResult.m */,
-				4F7364B217DC2AF70002A3AA /* MultiResult.h */,
-				4F7364B317DC2AF70002A3AA /* MultiResult.m */,
-				4CBE4D881655CAC8004B63D9 /* AppDelegate.m */,
-				4CBE4D901655CAC8004B63D9 /* MainStoryboard.storyboard */,
-				4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */,
-				4C0B18CF16568A3800A95B1E /* FaceDetector.h */,
-				4C0B18D016568A3800A95B1E /* FaceDetector.mm */,
-				4C9DEA611656694F003DBFB5 /* CustomFaceRecognizer.h */,
-				4C9DEA621656694F003DBFB5 /* CustomFaceRecognizer.mm */,
-				4F7364AC17DAA6DD0002A3AA /* VotingFaceRecognizer.h */,
-				4F7364AD17DAA6DD0002A3AA /* VotingFaceRecognizer.mm */,
+				4F7364C317DCD22C0002A3AA /* Data Classes */,
+				4F7364C417DCD25B0002A3AA /* UI */,
 				4C0B18CE1656780900A95B1E /* View Controllers */,
-				4CBE4D7F1655CAC8004B63D9 /* Supporting Files */,
+				4CBE4D7F1655CAC8004B63D9 /* Support */,
+			);
+			path = FaceRecognition;
+			sourceTree = "<group>";
+		};
+		4CBE4D7F1655CAC8004B63D9 /* Support */ = {
+			isa = PBXGroup;
+			children = (
 				4C0B18D216568BAA00A95B1E /* OpenCVData.h */,
 				4C0B18D316568BAA00A95B1E /* OpenCVData.mm */,
 				4F7364A417DAA5BD0002A3AA /* haarcascade_frontalface_alt_tree.xml */,
 				4F7364A517DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml */,
 				4F7364A717DAA5BE0002A3AA /* haarcascade_frontalface_default.xml */,
 				4C0B18D51656944400A95B1E /* haarcascade_frontalface_alt2.xml */,
-			);
-			path = FaceRecognition;
-			sourceTree = "<group>";
-		};
-		4CBE4D7F1655CAC8004B63D9 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
+				4CBE4D871655CAC8004B63D9 /* AppDelegate.h */,
+				4CBE4D881655CAC8004B63D9 /* AppDelegate.m */,
 				4CBE4D801655CAC8004B63D9 /* FaceRecognition-Info.plist */,
 				4CBE4D811655CAC8004B63D9 /* InfoPlist.strings */,
 				4CBE4D841655CAC8004B63D9 /* main.m */,
@@ -208,7 +198,33 @@
 				4CBE4D8C1655CAC8004B63D9 /* Default@2x.png */,
 				4CBE4D8E1655CAC8004B63D9 /* Default-568h@2x.png */,
 			);
-			name = "Supporting Files";
+			name = Support;
+			sourceTree = "<group>";
+		};
+		4F7364C317DCD22C0002A3AA /* Data Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4F7364AF17DC22240002A3AA /* RecognitionResult.h */,
+				4F7364B017DC22240002A3AA /* RecognitionResult.m */,
+				4F7364B217DC2AF70002A3AA /* MultiResult.h */,
+				4F7364B317DC2AF70002A3AA /* MultiResult.m */,
+				4C0B18CF16568A3800A95B1E /* FaceDetector.h */,
+				4C0B18D016568A3800A95B1E /* FaceDetector.mm */,
+				4C9DEA611656694F003DBFB5 /* CustomFaceRecognizer.h */,
+				4C9DEA621656694F003DBFB5 /* CustomFaceRecognizer.mm */,
+				4F7364AC17DAA6DD0002A3AA /* VotingFaceRecognizer.h */,
+				4F7364AD17DAA6DD0002A3AA /* VotingFaceRecognizer.mm */,
+			);
+			name = "Data Classes";
+			sourceTree = "<group>";
+		};
+		4F7364C417DCD25B0002A3AA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				4CBE4D901655CAC8004B63D9 /* MainStoryboard.storyboard */,
+				4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,6 +395,7 @@
 				INFOPLIST_FILE = "FaceRecognition/FaceRecognition-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -396,6 +413,7 @@
 				INFOPLIST_FILE = "FaceRecognition/FaceRecognition-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
