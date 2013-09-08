@@ -33,14 +33,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    // Re-train the model in case more pictures were added
-    self.modelAvailable = [self.faceRecognizer trainModel];
-    
-    if (!self.modelAvailable) {
-        self.instructionLabel.text = @"Add people in the database first";
-    }
-    
+    [self.faceRecognizer trainModel];
     [self.videoCamera start];
 }
 
@@ -84,33 +77,15 @@
     
     // By default highlight the face in red, no match found
     CGColor *highlightColor = [[UIColor redColor] CGColor];
-    NSString *message = @"No match found";
-    NSString *confidence = @"";
     
-    // Unless the database is empty, try a match
-    if (self.modelAvailable) {
-        NSDictionary *match = [self.faceRecognizer recognizeFace:face inImage:image];
-        
-        // Match found
-        if ([match objectForKey:@"personID"] != [NSNumber numberWithInt:-1]) {
-            message = [match objectForKey:@"personName"];
-            confidence = [match objectForKey:@"confidence"];
-            highlightColor = [[UIColor greenColor] CGColor];
-            
-            NSNumberFormatter *confidenceFormatter = [[NSNumberFormatter alloc] init];
-            [confidenceFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-            confidenceFormatter.maximumFractionDigits = 2;
-            
-            //confidence = [NSString stringWithFormat:@"%@ Confidence: %@", message,
-                        //[confidenceFormatter stringFromNumber:[match objectForKey:@"confidence"]]];
-            confidence = [NSString stringWithFormat:@"%@ %@", message, confidence];
-        }
+    MultiResult *match = [self.faceRecognizer recognizeFace:face inImage:image];
+    NSLog(@"Matched: %i", match.personID);
+    if (match.personID != -1) {
+        highlightColor = [[UIColor greenColor] CGColor];
     }
     
     // All changes to the UI have to happen on the main thread
     dispatch_sync(dispatch_get_main_queue(), ^{
-        self.instructionLabel.text = message;
-        self.confidenceLabel.text = confidence;
         [self highlightFace:[OpenCVData faceToCGRect:face] withColor:highlightColor];
     });
 }
@@ -118,8 +93,6 @@
 - (void)noFaceToDisplay
 {
     dispatch_sync(dispatch_get_main_queue(), ^{
-        self.instructionLabel.text = @"No face in image";
-        self.confidenceLabel.text = @"";
         self.featureLayer.hidden = YES;
     });
 }
@@ -162,8 +135,6 @@
 }
 
 -(CGSize)imageSizeAfterAspectFit {
-    
-    
     float newwidth;
     float newheight;
     UIImageView *imageView = self.imageView;

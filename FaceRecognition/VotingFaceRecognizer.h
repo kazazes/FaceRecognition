@@ -11,6 +11,7 @@
 #import <sqlite3.h>
 
 #import "CustomFaceRecognizer.h"
+#import "MultiResult.h"
 
 @interface VotingFaceRecognizer : NSObject
 {
@@ -18,12 +19,12 @@
 }
 
 @property (nonatomic, strong) NSMutableArray *faceRecognizers;
-
+@property (nonatomic) BOOL loaded;
 - (int)newPersonWithName:(NSString *)name;
 - (NSMutableArray *)getAllPeople;
 - (BOOL)trainModel;
 - (void)forgetAllFacesForPersonID:(int)personID;
 - (void)learnFace:(cv::Rect)face ofPersonID:(int)personID fromImage:(cv::Mat&)image;
 - (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image;
-- (NSDictionary *)recognizeFace:(cv::Rect)face inImage:(cv::Mat&)image;
+- (MultiResult*)recognizeFace:(cv::Rect)face inImage:(cv::Mat&)image;
 @end

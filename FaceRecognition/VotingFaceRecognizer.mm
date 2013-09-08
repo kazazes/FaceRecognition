@@ -15,6 +15,7 @@
 {
     self = [super init];
     if (self) {
+        self.loaded = NO;
         [self loadDatabase];
     
         self.faceRecognizers = [[NSMutableArray alloc] init];
@@ -79,8 +80,25 @@
     return results;
 }
 
+
 - (BOOL)trainModel
 {
+    if (!self.loaded) {
+        BOOL did_load = NO;
+        
+        for (CustomFaceRecognizer* recognizer in self.faceRecognizers) {
+            did_load = [recognizer loadModel];
+            if (!did_load) {
+                break;
+            }
+        }
+        if (did_load) {
+            self.loaded = YES;
+            return YES;
+        }
+    }
+    NSLog(@"Training Models from sqlite");
+    
     std::vector<cv::Mat> images;
     std::vector<int> labels;
     
@@ -109,9 +127,16 @@
     sqlite3_finalize(statement);
     
     if (images.size() > 0 && labels.size() > 0) {
+        dispatch_group_t training_group = dispatch_group_create();
         for (CustomFaceRecognizer* faceRecognizer in self.faceRecognizers) {
-            [faceRecognizer trainModel:images withLabels:labels];
+            dispatch_group_async(training_group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [faceRecognizer trainModel:images withLabels:labels];
+                [faceRecognizer saveModel];
+            });
+            
         }
+        dispatch_group_wait(training_group, DISPATCH_TIME_FOREVER);
+        self.loaded = YES;
         return YES;
     }
     else {
@@ -161,18 +186,24 @@
     return onlyTheFace;
 }
 
-- (NSDictionary *)recognizeFace:(cv::Rect)face inImage:(cv::Mat&)image
+- (MultiResult *)recognizeFace:(cv::Rect)face inImage:(cv::Mat&)image
 {
-    NSMutableDictionary *prediction = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *predictionCounts = [[NSMutableDictionary alloc] init];
+    MultiResult *results = [[MultiResult alloc] init];
     
+    dispatch_group_t recognize_group = dispatch_group_create();
+    int predictedLabel = -1;
     for (CustomFaceRecognizer* faceRecognizer in self.faceRecognizers) {
-        [prediction addEntriesFromDictionary:[faceRecognizer recognizeFace:face inImage:image]];
-        NSLog(@"Prediction: %@", prediction);
+        dispatch_group_async(recognize_group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            RecognitionResult *res = [faceRecognizer recognizeFace:face inImage:image];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [results addResult:res];
+            });
+        });
     }
-    
+    NSLog(@"waiting for results");
+    dispatch_group_wait(recognize_group, DISPATCH_TIME_FOREVER);
+    NSLog(@"Done waiting for results");
     NSString *personName = @"";
-    int predictedLabel = [[prediction objectForKey:@"personID"] intValue];
     
     // If a match was found, lookup the person's name
     if (predictedLabel != -1) {
@@ -190,8 +221,7 @@
         sqlite3_finalize(statement);
     }
     
-    [prediction setObject:personName forKey:@"personName"];
-    return prediction;
+    return results;
 }
 
 - (void)createTablesIfNeeded

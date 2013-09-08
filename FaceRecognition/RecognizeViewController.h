@@ -13,6 +13,9 @@
 
 @interface RecognizeViewController : UIViewController <CvVideoCameraDelegate>
 
+- (void)setupCamera;
+- (void)highlightFace:(CGRect)faceRect withColor:(CGColor *)color;
+
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) IBOutlet UILabel *instructionLabel;
 @property (nonatomic, strong) IBOutlet UILabel *confidenceLabel;
@@ -21,7 +24,6 @@
 @property (nonatomic, strong) CvVideoCamera* videoCamera;
 @property (nonatomic, strong) CALayer *featureLayer;
 @property (nonatomic) NSInteger frameNum;
-@property (nonatomic) BOOL modelAvailable;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *switchCameraButton;
 
 @end

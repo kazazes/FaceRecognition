@@ -15,7 +15,6 @@
 
 @interface CaptureImagesViewController : RecognizeViewController <CvVideoCameraDelegate>
 
-@property (nonatomic, strong) IBOutlet UILabel *instructionsLabel;
 @property (nonatomic, strong) IBOutlet UIButton *cameraButton;
 @property (strong, nonatomic) IBOutlet UIButton *libraryButton;
 @property (nonatomic, strong) NSString *personName;

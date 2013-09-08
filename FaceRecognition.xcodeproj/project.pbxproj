@@ -48,6 +48,8 @@
 		4F7364A917DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364A517DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml */; };
 		4F7364AB17DAA5BE0002A3AA /* haarcascade_frontalface_default.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364A717DAA5BE0002A3AA /* haarcascade_frontalface_default.xml */; };
 		4F7364AE17DAA6DD0002A3AA /* VotingFaceRecognizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364AD17DAA6DD0002A3AA /* VotingFaceRecognizer.mm */; };
+		4F7364B117DC22240002A3AA /* RecognitionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364B017DC22240002A3AA /* RecognitionResult.m */; };
+		4F7364B417DC2AF70002A3AA /* MultiResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364B317DC2AF70002A3AA /* MultiResult.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +112,10 @@
 		4F7364A717DAA5BE0002A3AA /* haarcascade_frontalface_default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_default.xml; sourceTree = "<group>"; };
 		4F7364AC17DAA6DD0002A3AA /* VotingFaceRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VotingFaceRecognizer.h; sourceTree = "<group>"; };
 		4F7364AD17DAA6DD0002A3AA /* VotingFaceRecognizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VotingFaceRecognizer.mm; sourceTree = "<group>"; };
+		4F7364AF17DC22240002A3AA /* RecognitionResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecognitionResult.h; sourceTree = "<group>"; };
+		4F7364B017DC22240002A3AA /* RecognitionResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognitionResult.m; sourceTree = "<group>"; };
+		4F7364B217DC2AF70002A3AA /* MultiResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiResult.h; sourceTree = "<group>"; };
+		4F7364B317DC2AF70002A3AA /* MultiResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiResult.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +237,10 @@
 			children = (
 				34368053177A416B00341668 /* Vendor */,
 				4CBE4D871655CAC8004B63D9 /* AppDelegate.h */,
+				4F7364AF17DC22240002A3AA /* RecognitionResult.h */,
+				4F7364B017DC22240002A3AA /* RecognitionResult.m */,
+				4F7364B217DC2AF70002A3AA /* MultiResult.h */,
+				4F7364B317DC2AF70002A3AA /* MultiResult.m */,
 				4CBE4D881655CAC8004B63D9 /* AppDelegate.m */,
 				4CBE4D901655CAC8004B63D9 /* MainStoryboard.storyboard */,
 				4C0B18CF16568A3800A95B1E /* FaceDetector.h */,
@@ -354,6 +364,8 @@
 				34368069177A418100341668 /* ELCAssetTablePicker.m in Sources */,
 				3436806A177A418100341668 /* ELCImagePickerController.m in Sources */,
 				4F7364AE17DAA6DD0002A3AA /* VotingFaceRecognizer.mm in Sources */,
+				4F7364B117DC22240002A3AA /* RecognitionResult.m in Sources */,
+				4F7364B417DC2AF70002A3AA /* MultiResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

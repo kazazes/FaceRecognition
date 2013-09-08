@@ -9,39 +9,55 @@
 #import "CustomFaceRecognizer.h"
 #import "OpenCVData.h"
 
+
 @implementation CustomFaceRecognizer
 
-- (id)init
-{
-    self = [super init];
-    
-    return self;
-}
 
 - (id)initWithEigenFaceRecognizer
 {
-    self = [self init];
+    self = [super init];
     _model = cv::createEigenFaceRecognizer();
-    
+    self.method = @"Eigen";
     return self;
 }
 
 - (id)initWithFisherFaceRecognizer
 {
-    self = [self init];
+    self = [super init];
     _model = cv::createFisherFaceRecognizer();
-    
+    self.method = @"Fisher";
+
     return self;
 }
 
 - (id)initWithLBPHFaceRecognizer
 {
-    self = [self init];
+    self = [super init];
     _model = cv::createLBPHFaceRecognizer();
-    
+    self.method = @"LBPH";
+
     return self;
 }
 
+-(NSString*)filePath:(NSString*)fn {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    return [documentDirectory stringByAppendingPathComponent:fn];
+}
+
+-(void)saveModel {
+    _model->save([[self filePath:self.method] cStringUsingEncoding:NSASCIIStringEncoding]);
+}
+
+-(BOOL)loadModel {
+    NSString* fn = [self filePath:self.method];
+    NSLog(@"LOADING MODEL %@", fn);
+    if ([[NSFileManager defaultManager] fileExistsAtPath:fn]) {
+        _model->load([fn cStringUsingEncoding:NSASCIIStringEncoding]);
+        return YES;
+    }
+    return NO;
+}
 
 - (BOOL)trainModel:(std::vector<cv::Mat>)images withLabels:(std::vector<int>)labels
 {
@@ -67,16 +83,13 @@
     return onlyTheFace;
 }
 
-- (NSDictionary *)recognizeFace:(cv::Rect)face inImage:(cv::Mat&)image
+- (RecognitionResult *)recognizeFace:(cv::Rect)face inImage:(cv::Mat&)image
 {
     int predictedLabel = -1;
     double confidence = 0.0;
     _model->predict([self pullStandardizedFace:face fromImage:image], predictedLabel, confidence);
     
-    return @{
-        @"personID": [NSNumber numberWithInt:predictedLabel],
-        @"confidence": [NSNumber numberWithDouble:confidence]
-    };
+    return [[RecognitionResult alloc] initWithPersonID:predictedLabel confidence:confidence method:self.method];
 }
 
 @end
