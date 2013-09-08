@@ -14,6 +14,7 @@
     self = [super init];
     if (self) {
         self.results = [[NSMutableArray alloc] init];
+        self.personName = @"Unknown";
         
     }
     return self;
@@ -26,10 +27,19 @@
 }
 
 -(int)personID {
+    NSMutableDictionary *counts = [[NSMutableDictionary alloc] init];
     NSLog(@"getting personID from %i results", [self.results count]);
     for (RecognitionResult* result in self.results) {
+        if (counts[@(result.personID)] == nil)
+            counts[@(result.personID)] = @0;
         NSLog(@"Method %@ matched %i", result.method, result.personID);
-        return result.personID;
+        counts[@(result.personID)] = @(INT(counts[@(result.personID)]) + 1);
+    }
+    for (id key in counts) {
+        int times_seen = INT(counts[key]);
+        if (times_seen > 1) {
+            return INT(key);
+        }
     }
     return -1;
 }

@@ -8,8 +8,6 @@
 
 #import "CaptureImagesViewController.h"
 #import "OpenCVData.h"
-#import "ELCImagePickerController.h"
-#import "ELCAlbumPickerController.h"
 
 //@interface CaptureImagesViewController ()
 //@property (strong, nonatomic) ELCAlbumPickerController *albumController;
@@ -128,8 +126,4 @@
 }
 
 
-- (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 @end

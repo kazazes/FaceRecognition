@@ -8,7 +8,7 @@
 
 #import "FaceDetector.h"
 
-NSString * const kFaceCascadeFilename = @"haarcascade_frontalface_alt2";
+NSString * const kFaceCascadeFilename = @"haarcascade_frontalface_alt_tree";
 const int kHaarOptions =  CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;
 
 @implementation FaceDetector
@@ -31,7 +31,7 @@ const int kHaarOptions =  CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;
 - (std::vector<cv::Rect>)facesFromImage:(cv::Mat&)image
 {
     std::vector<cv::Rect> faces;
-    _faceCascade.detectMultiScale(image, faces, 1.1, 2, kHaarOptions, cv::Size(60, 60));
+    _faceCascade.detectMultiScale(image, faces, 1.1, 4, CV_HAAR_DO_CANNY_PRUNING, cv::Size(80, 80));
     
     return faces;
 }

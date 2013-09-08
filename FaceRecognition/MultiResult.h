@@ -15,5 +15,6 @@
 
 @property (nonatomic, strong) NSMutableArray* results;
 @property (nonatomic, readonly) int personID;
+@property (nonatomic, strong) NSString* personName;
 
 @end

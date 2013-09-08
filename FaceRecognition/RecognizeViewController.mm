@@ -12,6 +12,32 @@
 
 #define CAPTURE_FPS 30
 
+float weighted_average(float a, float b, float weight) {
+    if (weight < .8) {
+        return b;
+    } else if (weight > .9) {
+        weight = .9;
+    }
+    float avg = b * (1 - weight) + a * weight;
+    return avg;
+    
+}
+
+float CGRectArea(CGRect a) {
+    return a.size.height * a.size.width;
+}
+
+CGRect CGRectAverage(CGRect a, CGRect b) {
+    CGRect intersect = CGRectIntersection(a, b);
+    CGRect union_rect = CGRectUnion(a, b);
+    float w = CGRectArea(intersect) / CGRectArea(union_rect);
+    return CGRectMake(weighted_average(a.origin.x, b.origin.x, w),
+                      weighted_average(a.origin.y, b.origin.y, w),
+                      weighted_average(a.size.width, b.size.width, w),
+                      weighted_average(a.size.height, b.size.height, w));
+}
+
+
 
 @interface RecognizeViewController ()
 - (IBAction)switchCameraClicked:(id)sender;
@@ -55,12 +81,20 @@
 
 - (void)processImage:(cv::Mat&)image
 {
-    // Only process every CAPTURE_FPS'th frame (every 1s)
-    if (self.frameNum == 5) {
-        [self parseFaces:[self.faceDetector facesFromImage:image] forImage:image];
-        self.frameNum = 0;
+    if (self.frameNum % 5 == 0) {
+        std::vector<cv::Rect> faces = [self.faceDetector facesFromImage:image];
+        if (faces.size() == 0) {
+            [self noFaceToDisplay];
+            return;
+        }
+        [self moveDetectionBox:[OpenCVData faceToCGRect:faces[0]]];
+        if (self.frameNum == 5 || [self.personName.text isEqual:@"Unknown"]) {
+            [self parseFaces:faces forImage:image];
+        }
+        if (self.frameNum == CAPTURE_FPS) {
+            self.frameNum = 0;
+        }
     }
-    
     self.frameNum++;
 }
 
@@ -79,14 +113,14 @@
     CGColor *highlightColor = [[UIColor redColor] CGColor];
     
     MultiResult *match = [self.faceRecognizer recognizeFace:face inImage:image];
-    NSLog(@"Matched: %i", match.personID);
     if (match.personID != -1) {
         highlightColor = [[UIColor greenColor] CGColor];
     }
-    
+
     // All changes to the UI have to happen on the main thread
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self highlightFace:[OpenCVData faceToCGRect:face] withColor:highlightColor];
+        [self.personName setText: match.personName];
     });
 }
 
@@ -94,22 +128,55 @@
 {
     dispatch_sync(dispatch_get_main_queue(), ^{
         self.featureLayer.hidden = YES;
+        self.personLabel.hidden = YES;
+        self.personName.text = @"Unknown";
+        
+    });
+}
+
+- (void)moveDetectionBox:(CGRect)faceRect {
+    if (self.featureLayer == nil) {
+        self.featureLayer = [[UIView alloc] init];
+        self.featureLayer.layer.cornerRadius = 10.0f;
+        self.featureLayer.layer.borderWidth = 1.5f;
+        self.featureLayer.layer.borderColor = [[UIColor redColor] CGColor];
+        
+    }
+    
+    if (self.personLabel == nil) {
+        self.personLabel = [[[NSBundle mainBundle]
+                             loadNibNamed:@"PersonLabel"
+                             owner:self options:nil] objectAtIndex:0];
+        self.personLabel.layer.cornerRadius = 10.0f;
+        [self.imageView addSubview:self.personLabel];
+        
+    }
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        CGRect scaledRect = [self scaleRect:faceRect];
+        [self.imageView addSubview:self.featureLayer];
+        [self.imageView addSubview:self.personLabel];
+        
+        [UIView animateWithDuration:0.05f
+                         animations:^{
+                             CGRect newPosition = CGRectAverage(self.featureLayer.frame,
+                                                                scaledRect);
+                             
+                             self.featureLayer.frame = newPosition;
+                             self.personLabel.frame = CGRectMake(newPosition.origin.x + newPosition.size.width/12,
+                                                                 newPosition.origin.y + newPosition.size.height + 10,
+                                                                 200,
+                                                                 30);
+                         }];
+        self.featureLayer.hidden = NO;
+        self.personLabel.hidden = NO;
+        self.lastFace = scaledRect;
     });
 }
 
 - (void)highlightFace:(CGRect)faceRect withColor:(CGColor *)color
 {
-    if (self.featureLayer == nil) {
-        self.featureLayer = [[CALayer alloc] init];
-        self.featureLayer.borderWidth = 4.0;
-    }
-    
-    [self.imageView.layer addSublayer:self.featureLayer];
-    CGRect scaledRect = [self scaleRect:faceRect];
-    
-    self.featureLayer.hidden = NO;
-    self.featureLayer.borderColor = color;
-    self.featureLayer.frame = scaledRect;
+    self.featureLayer.layer.borderColor = color;
 }
 
 - (IBAction)switchCameraClicked:(id)sender {

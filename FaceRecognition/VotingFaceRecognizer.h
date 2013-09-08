@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) NSMutableArray *faceRecognizers;
 @property (nonatomic) BOOL loaded;
+@property (nonatomic) int lastID;
+
 - (int)newPersonWithName:(NSString *)name;
 - (NSMutableArray *)getAllPeople;
 - (BOOL)trainModel;

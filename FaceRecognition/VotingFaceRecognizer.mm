@@ -17,7 +17,8 @@
     if (self) {
         self.loaded = NO;
         [self loadDatabase];
-    
+        self.lastID = -1;
+        
         self.faceRecognizers = [[NSMutableArray alloc] init];
         NSLog(@"Creating Recognizers");
         [self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithEigenFaceRecognizer]];
@@ -191,7 +192,6 @@
     MultiResult *results = [[MultiResult alloc] init];
     
     dispatch_group_t recognize_group = dispatch_group_create();
-    int predictedLabel = -1;
     for (CustomFaceRecognizer* faceRecognizer in self.faceRecognizers) {
         dispatch_group_async(recognize_group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             RecognitionResult *res = [faceRecognizer recognizeFace:face inImage:image];
@@ -199,28 +199,36 @@
                 [results addResult:res];
             });
         });
+        
     }
-    NSLog(@"waiting for results");
+    
     dispatch_group_wait(recognize_group, DISPATCH_TIME_FOREVER);
-    NSLog(@"Done waiting for results");
-    NSString *personName = @"";
+
+    int personID = -1;
+    if (results.personID == self.lastID) {
+        personID = results.personID;
+    } else if (results.personID != self.lastID && self.lastID != -1) {
+        personID = self.lastID;
+    }
     
     // If a match was found, lookup the person's name
-    if (predictedLabel != -1) {
+    if (personID != -1) {
         const char* selectSQL = "SELECT name FROM people WHERE id = ?";
         sqlite3_stmt *statement;
         
         if (sqlite3_prepare_v2(_db, selectSQL, -1, &statement, nil) == SQLITE_OK) {
-            sqlite3_bind_int(statement, 1, predictedLabel);
+            sqlite3_bind_int(statement, 1, personID);
             
             if (sqlite3_step(statement) != SQLITE_DONE) {
-                personName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 0)];
+                results.personName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 0)];
             }
         }
         
         sqlite3_finalize(statement);
     }
     
+    
+    self.lastID = results.personID;
     return results;
 }
 

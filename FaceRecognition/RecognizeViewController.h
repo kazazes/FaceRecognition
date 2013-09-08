@@ -16,13 +16,20 @@
 - (void)setupCamera;
 - (void)highlightFace:(CGRect)faceRect withColor:(CGColor *)color;
 
+@property (nonatomic) CGRect lastFace;
+
+@property (retain, nonatomic) IBOutlet UILabel *personName;
+@property (retain, nonatomic) IBOutlet UIView *personLabel;
+
+@property (nonatomic, retain) IBOutlet UIView *labelView;
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) IBOutlet UILabel *instructionLabel;
 @property (nonatomic, strong) IBOutlet UILabel *confidenceLabel;
 @property (nonatomic, strong) FaceDetector *faceDetector;
 @property (nonatomic, strong) VotingFaceRecognizer *faceRecognizer;
 @property (nonatomic, strong) CvVideoCamera* videoCamera;
-@property (nonatomic, strong) CALayer *featureLayer;
+@property (nonatomic, strong) UIView *featureLayer;
+//@property (nonatomic, strong) CALayer *userInfoLayer;
 @property (nonatomic) NSInteger frameNum;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *switchCameraButton;
 
