@@ -7,7 +7,7 @@
 //
 
 #import "PeopleViewController.h"
-#import "CaptureImagesViewController.h"
+#import "RecognizeViewController.h"
 
 @interface PeopleViewController ()
 
@@ -55,18 +55,28 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
-    self.selectedPerson = [self.people objectAtIndex:row];
-    
-    [self performSegueWithIdentifier:@"CaptureImages" sender:self];
+    NSDictionary* selectedPerson = [self.people objectAtIndex:row];
+    [(RecognizeViewController*)[self parentViewController]  learnFace:INT(selectedPerson[@"id"])];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    CaptureImagesViewController *destination = segue.destinationViewController;
+    RecognizeViewController *destination = segue.destinationViewController;
     
     if (self.selectedPerson) {
-        destination.personID = [self.selectedPerson objectForKey:@"id"];
-        destination.personName = [self.selectedPerson objectForKey:@"name"];
+        destination.learningPersonID = INT(self.selectedPerson[@"id"]);
+        destination.learningMode = YES;
+        destination.personName = self.selectedPerson[@"name"];
+    }
+}
+
+- (IBAction)setEditMode:(UIBarButtonItem *)sender {
+    if (self.editing) {
+        sender.title = @"Edit";
+        [super setEditing:NO animated:YES];
+    } else {
+        sender.title = @"Done";
+        [super setEditing:YES animated:YES];
     }
 }
 

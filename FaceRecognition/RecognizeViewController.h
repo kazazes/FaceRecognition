@@ -17,11 +17,18 @@
 - (void)highlightFace:(CGRect)faceRect withColor:(CGColor *)color;
 - (void)noFaceToDisplay;
 - (IBAction)switchCameraClicked:(id)sender;
+- (void) learnFace:(int)personID;
+- (IBAction)learnFaceClick:(id)sender;
+- (IBAction)addSomebody:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *learnFaceButton;
+@property (strong, nonatomic) IBOutlet UIView *nameListViewContainer;
 @property (nonatomic) CGRect lastFace;
 
 @property (retain, nonatomic) IBOutlet UILabel *personName;
 @property (retain, nonatomic) IBOutlet UIView *personLabel;
+@property (nonatomic) BOOL learningMode;
+@property (nonatomic) int learningPersonID;
 
 @property (nonatomic, retain) IBOutlet UIView *labelView;
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;

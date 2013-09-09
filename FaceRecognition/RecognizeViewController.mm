@@ -59,6 +59,7 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.nameListViewContainer.layer.cornerRadius = 50.0f;
     [self.faceRecognizer trainModel];
     [self.videoCamera start];
 }
@@ -66,6 +67,24 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.videoCamera stop];
+}
+
+- (void) learnFace:(int)personID {
+    self.learningPersonID = personID;
+    self.learningMode = YES;
+    self.learnFaceButton.title = @"Stop Learning!";
+    self.nameListViewContainer.hidden = YES;
+}
+
+- (IBAction)learnFaceClick:(id)sender {
+    if (self.learningMode) {
+        self.learnFaceButton.title = @"Learn Face";
+        self.learningMode = NO;
+        self.learningPersonID = nil;
+    } else {
+        self.nameListViewContainer.hidden = self.nameListViewContainer.hidden ? NO : YES;
+    }
+
 }
 
 - (void)setupCamera
@@ -112,7 +131,10 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
     // By default highlight the face in red, no match found
     CGColor *highlightColor = [[UIColor redColor] CGColor];
     
+    if (self.learningMode)
+        [self learnFace:faces forImage:image];
     MultiResult *match = [self.faceRecognizer recognizeFace:face inImage:image];
+
     if (match.personID != -1) {
         highlightColor = [[UIColor greenColor] CGColor];
     }
@@ -234,6 +256,26 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
     return CGSizeMake(newwidth/288, newheight/352);
     
 }
-- (IBAction)switchCamera:(UIBarButtonItem *)sender {
+
+- (bool)learnFace:(const std::vector<cv::Rect> &)faces forImage:(cv::Mat&)image
+{
+    if (faces.size() != 1) {
+        [self noFaceToDisplay];
+        return NO;
+    }
+    
+    // We only care about the first face
+    cv::Rect face = faces[0];
+    
+    // Learn it
+    [self.faceRecognizer learnFace:face ofPersonID:self.learningPersonID fromImage:image];
+    return YES;
 }
+
+- (IBAction)addSomebody:(id)sender {
+    self.nameListViewContainer.hidden = NO;
+    //[self.nameListViewContainer
+    
+}
+    
 @end

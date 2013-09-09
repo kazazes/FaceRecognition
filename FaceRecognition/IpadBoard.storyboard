@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="MEw-ab-c0e">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Recognize View Controller-->
+        <scene sceneID="4dl-am-xWu">
+            <objects>
+                <viewController wantsFullScreenLayout="YES" id="MEw-ab-c0e" customClass="RecognizeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nlr-5q-ysU">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPK-g2-lNM"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8V-54-Ct6">
+                                <items>
+                                    <barButtonItem title="Learn Face" id="pBD-fJ-bT2">
+                                        <connections>
+                                            <action selector="learnFaceClick:" destination="MEw-ab-c0e" id="wwi-jO-rUg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="xCE-0N-2Ti"/>
+                                </items>
+                            </toolbar>
+                            <containerView hidden="YES" alpha="0.60000000000000009" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TE7-yd-MK6">
+                                <connections>
+                                    <segue destination="VZE-vl-WER" kind="embed" id="2DS-xB-7PH"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TE7-yd-MK6" firstAttribute="top" secondItem="Nlr-5q-ysU" secondAttribute="top" constant="552" id="2jV-PA-XXm"/>
+                            <constraint firstItem="TE7-yd-MK6" firstAttribute="leading" secondItem="Nlr-5q-ysU" secondAttribute="leading" type="default" id="4fd-uG-Blj"/>
+                            <constraint firstItem="L8V-54-Ct6" firstAttribute="trailing" secondItem="Nlr-5q-ysU" secondAttribute="trailing" type="default" id="BNf-zp-KEW"/>
+                            <constraint firstItem="L8V-54-Ct6" firstAttribute="bottom" secondItem="Nlr-5q-ysU" secondAttribute="bottom" type="default" id="Is4-Pg-ikK"/>
+                            <constraint firstItem="TE7-yd-MK6" firstAttribute="bottom" secondItem="L8V-54-Ct6" secondAttribute="top" type="default" id="MVq-3R-rpX"/>
+                            <constraint firstItem="L8V-54-Ct6" firstAttribute="leading" secondItem="Nlr-5q-ysU" secondAttribute="leading" type="default" id="VlN-lw-BkR"/>
+                            <constraint firstAttribute="trailing" secondItem="TE7-yd-MK6" secondAttribute="trailing" constant="504" id="YhF-bF-Q96"/>
+                            <constraint firstItem="GPK-g2-lNM" firstAttribute="trailing" secondItem="Nlr-5q-ysU" secondAttribute="trailing" type="default" id="iIm-px-zWh"/>
+                            <constraint firstItem="GPK-g2-lNM" firstAttribute="top" secondItem="Nlr-5q-ysU" secondAttribute="top" type="default" id="ju4-gq-iDj"/>
+                            <constraint firstItem="GPK-g2-lNM" firstAttribute="bottom" secondItem="Nlr-5q-ysU" secondAttribute="bottom" type="default" id="nAA-Cp-zcW"/>
+                            <constraint firstItem="GPK-g2-lNM" firstAttribute="leading" secondItem="Nlr-5q-ysU" secondAttribute="leading" type="default" id="oyE-P1-vHD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="GPK-g2-lNM" id="40f-0C-QOH"/>
+                        <outlet property="learnFaceButton" destination="pBD-fJ-bT2" id="7V5-VO-bU9"/>
+                        <outlet property="nameListViewContainer" destination="TE7-yd-MK6" id="8dG-kd-m8z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uj2-fN-uNq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="329" y="22"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="i0l-pc-zd4">
+            <objects>
+                <viewController id="VZE-vl-WER" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="s5m-Q6-Zdt">
+                        <rect key="frame" x="0.0" y="0.0" width="264" height="364"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LfZ-8R-0JX">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="PersonCell" id="yvE-F0-Zxl" userLabel="PersonCell">
+                                        <rect key="frame" x="0.0" y="22" width="264" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="264" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="LfZ-8R-0JX" firstAttribute="trailing" secondItem="s5m-Q6-Zdt" secondAttribute="trailing" type="default" id="2G5-Yo-fUD"/>
+                            <constraint firstItem="LfZ-8R-0JX" firstAttribute="bottom" secondItem="s5m-Q6-Zdt" secondAttribute="bottom" type="user" id="ZrN-50-uqq"/>
+                            <constraint firstItem="LfZ-8R-0JX" firstAttribute="leading" secondItem="s5m-Q6-Zdt" secondAttribute="leading" type="default" id="bOS-Iw-Lgi"/>
+                            <constraint firstItem="LfZ-8R-0JX" firstAttribute="top" secondItem="s5m-Q6-Zdt" secondAttribute="top" type="user" id="fZV-ud-C57"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="A5t-sK-Cbf"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="view" destination="LfZ-8R-0JX" id="KZL-7X-jNI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sfd-Gb-1hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1341" y="1062"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RecognizeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecognizeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addSomebody:"/>
+                <relationship kind="action" name="learnFaceClick:"/>
+                <relationship kind="action" name="switchCameraClicked:"/>
+                <relationship kind="outlet" name="confidenceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="instructionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="learnFaceButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="nameListViewContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="personLabel" candidateClass="UIView"/>
+                <relationship kind="outlet" name="personName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="switchCameraButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
