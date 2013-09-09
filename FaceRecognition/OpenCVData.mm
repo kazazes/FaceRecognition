@@ -23,6 +23,14 @@
     return output;
 }
 
++ (void)writeCvMat:(cv::Mat&)cvMat toPath:(NSString*)path {
+    cv::imwrite([path cStringUsingEncoding:NSUTF8StringEncoding], cvMat);
+}
+
++ (cv::Mat)readImageToCvMat:(NSString*)path {
+    return cv::imread([path cStringUsingEncoding:NSUTF8StringEncoding]);
+}
+
 + (CGRect)faceToCGRect:(cv::Rect)face
 {
     CGRect faceRect;

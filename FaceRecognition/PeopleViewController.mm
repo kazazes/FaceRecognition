@@ -19,13 +19,20 @@
 {
     [super viewDidLoad];
     self.faceRecognizer = [[VotingFaceRecognizer alloc] init];
+    NSLog(@"Passing self up");
+    //[(RecognizeViewController*)[self parentViewController] pvc:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [(RecognizeViewController*)[self parentViewController] pvc:self];
     self.people = [self.faceRecognizer getAllPeople];
+    [self.tableView reloadData];
+}
+
+- (void)reloadPeople {
+    self.people = [NSMutableArray arrayWithArray:[self.faceRecognizer getAllPeople]];
     [self.tableView reloadData];
 }
 
@@ -77,6 +84,18 @@
     } else {
         sender.title = @"Done";
         [super setEditing:YES animated:YES];
+    }
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = [indexPath row];
+    NSDictionary* selectedPerson = [self.people objectAtIndex:row];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [(RecognizeViewController*)[self parentViewController] removeUser:INT(selectedPerson[@"id"])];
+        [self.people removeObjectAtIndex:row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 

@@ -141,11 +141,12 @@
     
     for (NSDictionary* person in people) {
         int personID = INT(person[@"id"]);
-        //NSArray* personName = person[@"name"];
-        
-        for (NSString* pic_fn in [self globListing:@"*.mat" inPath:[self personImagePath:personID]]) {
-            NSData* imageData = [NSData dataWithContentsOfFile:pic_fn];
-            cv::Mat faceData = [OpenCVData dataToMat:imageData width:100 height:100];
+        NSArray* personName = person[@"name"];
+        NSArray* personImages = [self globListing:@"*.png" inPath:[self personImagePath:personID]];
+        NSLog(@"%@ %@", personName, personImages);
+        for (NSString* pic_fn in personImages) {
+            //NSData* imageData = [NSData dataWithContentsOfFile:pic_fn];
+            cv::Mat faceData = [OpenCVData readImageToCvMat:pic_fn];
 
             images.push_back(faceData);
             labels.push_back(personID);
@@ -179,12 +180,16 @@
 - (void)learnFace:(cv::Rect)face ofPersonID:(int)personID fromImage:(cv::Mat&)image
 {
     cv::Mat faceData = [self pullStandardizedFace:face fromImage:image];
-    NSData *serialized = [OpenCVData serializeCvMat:faceData];
+    cv::Mat normalizedFaceData;
+    cv::normalize(faceData, normalizedFaceData, 0, 255, cv::NORM_MINMAX, CV_8UC1);
+    //NSData *serialized = [OpenCVData serializeCvMat:normalizedFaceData];
     
-    long time = floor([[NSDate date] timeIntervalSince1970] * 1000000);
-    NSString* fn = [[self personImagePath:personID] stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.mat", time]];
-    
-    [serialized writeToFile:fn atomically:YES];
+    NSString* timestamp = [[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]
+                           stringByReplacingOccurrencesOfString:@"." withString:@""];
+    NSString* fn = [[[self personImagePath:personID] stringByAppendingPathComponent:timestamp] stringByAppendingPathExtension:@"png"];
+    NSLog(@"Saving file: %@", fn);
+    [OpenCVData writeCvMat:normalizedFaceData toPath:fn];
+    //[serialized writeToFile:fn atomically:YES];
 }
 
 - (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image
@@ -194,7 +199,7 @@
     cv::cvtColor(image(face), onlyTheFace, CV_RGB2GRAY);
     
     // Standardize the face to 100x100 pixels
-    cv::resize(onlyTheFace, onlyTheFace, cv::Size(100, 100), 0, 0);
+    cv::resize(onlyTheFace, onlyTheFace, cv::Size(128, 128), 0, 0, cv::INTER_LANCZOS4);
     
     return onlyTheFace;
 }

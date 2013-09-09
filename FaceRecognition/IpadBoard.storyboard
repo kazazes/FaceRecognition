@@ -13,14 +13,41 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPK-g2-lNM"/>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8V-54-Ct6">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="L8V-54-Ct6">
                                 <items>
                                     <barButtonItem title="Learn Face" id="pBD-fJ-bT2">
                                         <connections>
                                             <action selector="learnFaceClick:" destination="MEw-ab-c0e" id="wwi-jO-rUg"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Edit" id="IfO-XT-04l">
+                                        <connections>
+                                            <action selector="editList:" destination="MEw-ab-c0e" id="d5r-mj-ZNn"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xCE-0N-2Ti"/>
+                                    <barButtonItem title="Retrain Model" id="7qE-da-bjk">
+                                        <connections>
+                                            <action selector="retrainModel:" destination="MEw-ab-c0e" id="byS-Jy-eHY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0Gi-yq-FZT"/>
+                                    <barButtonItem style="plain" id="mAB-vs-SPf">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="FQY-Pb-Bhd">
+                                            <rect key="frame" x="566" y="7" width="97" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="newPerson:" destination="MEw-ab-c0e" eventType="editingDidEndOnExit" id="58f-Al-XB7"/>
+                                            </connections>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem title="Add Person" id="J44-9s-vw5">
+                                        <connections>
+                                            <action selector="newPerson:" destination="MEw-ab-c0e" id="ueF-p0-aJU"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <containerView hidden="YES" alpha="0.60000000000000009" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TE7-yd-MK6">
@@ -47,6 +74,7 @@
                     <connections>
                         <outlet property="imageView" destination="GPK-g2-lNM" id="40f-0C-QOH"/>
                         <outlet property="learnFaceButton" destination="pBD-fJ-bT2" id="7V5-VO-bU9"/>
+                        <outlet property="nameField" destination="FQY-Pb-Bhd" id="vXy-WL-GMX"/>
                         <outlet property="nameListViewContainer" destination="TE7-yd-MK6" id="8dG-kd-m8z"/>
                     </connections>
                 </viewController>
@@ -54,12 +82,13 @@
             </objects>
             <point key="canvasLocation" x="329" y="22"/>
         </scene>
-        <!--View Controller-->
+        <!--People View Controller-->
         <scene sceneID="i0l-pc-zd4">
             <objects>
-                <viewController id="VZE-vl-WER" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sfd-Gb-1hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="VZE-vl-WER" customClass="PeopleViewController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="s5m-Q6-Zdt">
-                        <rect key="frame" x="0.0" y="0.0" width="264" height="364"/>
+                        <rect key="frame" x="0.0" y="0.0" width="264" height="408"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LfZ-8R-0JX">
@@ -85,15 +114,11 @@
                             <constraint firstItem="LfZ-8R-0JX" firstAttribute="top" secondItem="s5m-Q6-Zdt" secondAttribute="top" type="user" id="fZV-ud-C57"/>
                         </constraints>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="A5t-sK-Cbf"/>
-                    </toolbarItems>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <toolbarItems/>
                     <connections>
                         <outlet property="view" destination="LfZ-8R-0JX" id="KZL-7X-jNI"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sfd-Gb-1hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1341" y="1062"/>
         </scene>
@@ -102,17 +127,27 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="PeopleViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="setEditMode:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="view" candidateClass="UITableView"/>
+            </relationships>
+        </class>
         <class className="RecognizeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RecognizeViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addSomebody:"/>
+                <relationship kind="action" name="editList:"/>
                 <relationship kind="action" name="learnFaceClick:"/>
+                <relationship kind="action" name="newPerson:"/>
+                <relationship kind="action" name="retrainModel:"/>
                 <relationship kind="action" name="switchCameraClicked:"/>
                 <relationship kind="outlet" name="confidenceLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="instructionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="learnFaceButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="nameListViewContainer" candidateClass="UIView"/>
                 <relationship kind="outlet" name="personLabel" candidateClass="UIView"/>
                 <relationship kind="outlet" name="personName" candidateClass="UILabel"/>

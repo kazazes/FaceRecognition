@@ -131,8 +131,10 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
     // By default highlight the face in red, no match found
     CGColor *highlightColor = [[UIColor redColor] CGColor];
     
-    if (self.learningMode)
+    if (self.learningMode) {
         [self learnFace:faces forImage:image];
+        return;
+    }
     MultiResult *match = [self.faceRecognizer recognizeFace:face inImage:image];
 
     if (match.personID != -1) {
@@ -272,10 +274,31 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
     return YES;
 }
 
-- (IBAction)addSomebody:(id)sender {
+- (IBAction)editList:(id)sender {
     self.nameListViewContainer.hidden = NO;
-    //[self.nameListViewContainer
+    [self.pvc setEditMode:sender];
     
+}
+
+- (void)pvc:(PeopleViewController*)pvc {
+    self.pvc = pvc;
+    NSLog(@"GOT IT %@", pvc);
+}
+
+- (void)removeUser:(int)personID {
+    [self.faceRecognizer forgetAllFacesForPersonID:personID];
+}
+
+- (IBAction)newPerson:(id)sender {
+    NSLog(@"Adding Person");
+    [self.view endEditing:YES];
+    [self.faceRecognizer newPersonWithName:[self.nameField text]];
+    self.nameField.text = @"";
+    [self.pvc reloadPeople];
+}
+
+- (IBAction)retrainModel:(id)sender {
+    [self.faceRecognizer trainModel];
 }
     
 @end

@@ -11,10 +11,11 @@
 
 @interface PeopleViewController : UITableViewController
 - (IBAction)setEditMode:(UIBarButtonItem *)sender;
+- (void)reloadPeople;
 
 @property (weak, nonatomic) IBOutlet UITableView *view;
 @property (nonatomic, strong) VotingFaceRecognizer *faceRecognizer;
-@property (nonatomic, strong) NSArray *people;
+@property (nonatomic, strong) NSMutableArray *people;
 @property (nonatomic, strong) NSDictionary *selectedPerson;
 
 @end

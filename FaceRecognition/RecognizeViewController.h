@@ -10,6 +10,7 @@
 #import <opencv2/highgui/cap_ios.h>
 #import "FaceDetector.h"
 #import "VotingFaceRecognizer.h"
+#import "PeopleViewController.h"
 
 @interface RecognizeViewController : UIViewController <CvVideoCameraDelegate>
 
@@ -19,8 +20,14 @@
 - (IBAction)switchCameraClicked:(id)sender;
 - (void) learnFace:(int)personID;
 - (IBAction)learnFaceClick:(id)sender;
-- (IBAction)addSomebody:(id)sender;
+- (IBAction)editList:(id)sender;
+- (void)pvc:(PeopleViewController*)pvc;
+- (IBAction)newPerson:(id)sender;
+- (void)removeUser:(int)personID;
+- (IBAction)retrainModel:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UITextField* nameField;
+@property (strong, nonatomic) PeopleViewController* pvc;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *learnFaceButton;
 @property (strong, nonatomic) IBOutlet UIView *nameListViewContainer;
 @property (nonatomic) CGRect lastFace;

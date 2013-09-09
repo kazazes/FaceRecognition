@@ -64,7 +64,7 @@
 - (BOOL)trainModel:(std::vector<cv::Mat>)images withLabels:(std::vector<int>)labels
 {
     if (images.size() > 1 && labels.size() > 1) {
-        NSLog(@"%ld %ld", images.size(), labels.size());
+        NSLog(@"Training with %ld %ld examples.", images.size(), labels.size());
         _model->train(images, labels);
         self.trained = YES;
         return YES;
