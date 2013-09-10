@@ -10,7 +10,7 @@
 
 @implementation RecognitionResult
 
-- (id)initWithPersonID:(int)personID confidence:(float)confidence method:(NSString*)method
+- (id)initWithPersonID:(int)personID confidence:(double)confidence method:(NSString*)method
 {
     self = [super init];
     if (self) {

@@ -26,6 +26,7 @@
 - (void)removeUser:(int)personID;
 - (IBAction)retrainModel:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UILabel* hud;
 @property (strong, nonatomic) IBOutlet UITextField* nameField;
 @property (strong, nonatomic) PeopleViewController* pvc;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *learnFaceButton;

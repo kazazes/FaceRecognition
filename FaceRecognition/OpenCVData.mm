@@ -28,7 +28,7 @@
 }
 
 + (cv::Mat)readImageToCvMat:(NSString*)path {
-    return cv::imread([path cStringUsingEncoding:NSUTF8StringEncoding]);
+    return cv::imread([path cStringUsingEncoding:NSUTF8StringEncoding], CV_LOAD_IMAGE_GRAYSCALE);
 }
 
 + (CGRect)faceToCGRect:(cv::Rect)face
@@ -115,6 +115,17 @@
 
 + (void)cvImageNormalize:(cv::Mat)image {
     
+}
+
++ (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image
+{
+    // Pull the grayscale face ROI out of the captured image
+    cv::Mat onlyTheFace;
+    cv::cvtColor(image(face), onlyTheFace, CV_RGB2GRAY);
+    
+    cv::resize(onlyTheFace, onlyTheFace, cv::Size(128, 128), 0, 0, cv::INTER_LANCZOS4);
+    
+    return onlyTheFace;
 }
 
 @end

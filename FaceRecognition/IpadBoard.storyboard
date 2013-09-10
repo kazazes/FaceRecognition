@@ -12,7 +12,7 @@
                         <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPK-g2-lNM"/>
+                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPK-g2-lNM"/>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="L8V-54-Ct6">
                                 <items>
                                     <barButtonItem title="Learn Face" id="pBD-fJ-bT2">
@@ -23,6 +23,11 @@
                                     <barButtonItem title="Edit" id="IfO-XT-04l">
                                         <connections>
                                             <action selector="editList:" destination="MEw-ab-c0e" id="d5r-mj-ZNn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Swap Camera" id="1Q7-RT-2Qd">
+                                        <connections>
+                                            <action selector="switchCameraClicked:" destination="MEw-ab-c0e" id="LoO-ds-Dbd"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xCE-0N-2Ti"/>
@@ -55,23 +60,42 @@
                                     <segue destination="VZE-vl-WER" kind="embed" id="2DS-xB-7PH"/>
                                 </connections>
                             </containerView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cS5-Xk-QtR">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="256" id="IE4-hJ-GsH"/>
+                                    <constraint firstAttribute="height" constant="57" id="u1C-Cy-J8g"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="cS5-Xk-QtR" secondAttribute="bottom" constant="52" id="1hR-Qu-mKB"/>
                             <constraint firstItem="TE7-yd-MK6" firstAttribute="top" secondItem="Nlr-5q-ysU" secondAttribute="top" constant="552" id="2jV-PA-XXm"/>
                             <constraint firstItem="TE7-yd-MK6" firstAttribute="leading" secondItem="Nlr-5q-ysU" secondAttribute="leading" type="default" id="4fd-uG-Blj"/>
                             <constraint firstItem="L8V-54-Ct6" firstAttribute="trailing" secondItem="Nlr-5q-ysU" secondAttribute="trailing" type="default" id="BNf-zp-KEW"/>
+                            <constraint firstAttribute="trailing" secondItem="cS5-Xk-QtR" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="H2g-po-bOT"/>
                             <constraint firstItem="L8V-54-Ct6" firstAttribute="bottom" secondItem="Nlr-5q-ysU" secondAttribute="bottom" type="default" id="Is4-Pg-ikK"/>
                             <constraint firstItem="TE7-yd-MK6" firstAttribute="bottom" secondItem="L8V-54-Ct6" secondAttribute="top" type="default" id="MVq-3R-rpX"/>
+                            <constraint firstItem="L8V-54-Ct6" firstAttribute="top" secondItem="GPK-g2-lNM" secondAttribute="bottom" type="default" id="Pek-H1-WEO"/>
                             <constraint firstItem="L8V-54-Ct6" firstAttribute="leading" secondItem="Nlr-5q-ysU" secondAttribute="leading" type="default" id="VlN-lw-BkR"/>
                             <constraint firstAttribute="trailing" secondItem="TE7-yd-MK6" secondAttribute="trailing" constant="504" id="YhF-bF-Q96"/>
                             <constraint firstItem="GPK-g2-lNM" firstAttribute="trailing" secondItem="Nlr-5q-ysU" secondAttribute="trailing" type="default" id="iIm-px-zWh"/>
                             <constraint firstItem="GPK-g2-lNM" firstAttribute="top" secondItem="Nlr-5q-ysU" secondAttribute="top" type="default" id="ju4-gq-iDj"/>
-                            <constraint firstItem="GPK-g2-lNM" firstAttribute="bottom" secondItem="Nlr-5q-ysU" secondAttribute="bottom" type="default" id="nAA-Cp-zcW"/>
                             <constraint firstItem="GPK-g2-lNM" firstAttribute="leading" secondItem="Nlr-5q-ysU" secondAttribute="leading" type="default" id="oyE-P1-vHD"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="hud" destination="cS5-Xk-QtR" id="fxj-cD-Xti"/>
                         <outlet property="imageView" destination="GPK-g2-lNM" id="40f-0C-QOH"/>
                         <outlet property="learnFaceButton" destination="pBD-fJ-bT2" id="7V5-VO-bU9"/>
                         <outlet property="nameField" destination="FQY-Pb-Bhd" id="vXy-WL-GMX"/>
@@ -143,6 +167,7 @@
                 <relationship kind="action" name="retrainModel:"/>
                 <relationship kind="action" name="switchCameraClicked:"/>
                 <relationship kind="outlet" name="confidenceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="hud" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="instructionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelView" candidateClass="UIView"/>

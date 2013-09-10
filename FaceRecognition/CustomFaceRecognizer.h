@@ -22,7 +22,6 @@
 - (BOOL)loadModel;
 - (id)initWithMethod:(NSString*)method;
 - (BOOL)trainModel:(std::vector<cv::Mat>)images withLabels:(std::vector<int>)labels;
-- (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image;
 - (RecognitionResult *)recognizeFace:(cv::Rect)face inImage:(cv::Mat&)image;
 
 @end

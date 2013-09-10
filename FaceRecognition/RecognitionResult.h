@@ -10,7 +10,7 @@
 
 @interface RecognitionResult : NSObject
 
-- (id)initWithPersonID:(int)personID confidence:(float)confidence method:(NSString*)method;
+- (id)initWithPersonID:(int)personID confidence:(double)confidence method:(NSString*)method;
 
 @property (nonatomic) int personID;
 @property (nonatomic) float confidence;

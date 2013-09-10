@@ -19,4 +19,5 @@
 + (UIImage *)UIImageFromMat:(cv::Mat)image;
 + (cv::Mat)cvMatFromUIImage:(UIImage *)image;
 + (cv::Mat)cvMatFromUIImage:(UIImage *)image usingColorSpace:(int)outputSpace;
++ (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image;
 @end

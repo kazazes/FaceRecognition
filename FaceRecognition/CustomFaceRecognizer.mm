@@ -53,6 +53,7 @@
 -(BOOL)loadModel {
     NSString* fn = [self filePath:self.method];
     NSLog(@"LOADING MODEL %@", fn);
+    
     if ([[NSFileManager defaultManager] fileExistsAtPath:fn]) {
         _model->load([fn cStringUsingEncoding:NSASCIIStringEncoding]);
         self.trained = YES;
@@ -64,7 +65,6 @@
 - (BOOL)trainModel:(std::vector<cv::Mat>)images withLabels:(std::vector<int>)labels
 {
     if (images.size() > 1 && labels.size() > 1) {
-        NSLog(@"Training with %ld %ld examples.", images.size(), labels.size());
         _model->train(images, labels);
         self.trained = YES;
         return YES;
@@ -74,25 +74,12 @@
     }
 }
 
-
-- (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image
-{
-    // Pull the grayscale face ROI out of the captured image
-    cv::Mat onlyTheFace;
-    cv::cvtColor(image(face), onlyTheFace, CV_RGB2GRAY);
-    
-    // Standardize the face to 100x100 pixels
-    cv::resize(onlyTheFace, onlyTheFace, cv::Size(100, 100), 0, 0);
-    
-    return onlyTheFace;
-}
-
 - (RecognitionResult *)recognizeFace:(cv::Rect)face inImage:(cv::Mat&)image
 {
     int predictedLabel = -1;
     double confidence = 0.0;
     if (self.trained)
-        _model->predict([self pullStandardizedFace:face fromImage:image], predictedLabel, confidence);
+        _model->predict([OpenCVData pullStandardizedFace:face fromImage:image], predictedLabel, confidence);
     
     return [[RecognitionResult alloc] initWithPersonID:predictedLabel confidence:confidence method:self.method];
 }

@@ -24,8 +24,8 @@
         self.faceRecognizers = [[NSMutableArray alloc] init];
         NSLog(@"Creating Recognizers");
         //[self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithMethod:@"Eigen"]];
-        [self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithMethod:@"Fisher"]];
-        //[self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithMethod:@"LBPH"]];
+        //[self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithMethod:@"Fisher"]];
+        [self.faceRecognizers addObject: [[CustomFaceRecognizer alloc] initWithMethod:@"LBPH"]];
         NSLog(@"CREATED %@", self.faceRecognizers);
     }
     return self;
@@ -118,26 +118,30 @@
 
 - (BOOL)trainModel
 {
-//    if (!self.loaded) {
-//        BOOL did_load = NO;
-//        
-//        for (CustomFaceRecognizer* recognizer in self.faceRecognizers) {
-//            did_load = [recognizer loadModel];
-//            if (!did_load) {
-//                break;
-//            }
-//        }
-//        if (did_load) {
-//            self.loaded = YES;
-//            return YES;
-//        }
-//    }
+    if (!self.loaded) {
+        BOOL did_load = NO;
+        
+        for (CustomFaceRecognizer* recognizer in self.faceRecognizers) {
+            did_load = [recognizer loadModel];
+            if (!did_load) {
+                break;
+            }
+        }
+        if (did_load) {
+            self.loaded = YES;
+            return YES;
+        }
+    }
     NSLog(@"Training Models from images");
     
     std::vector<cv::Mat> images;
     std::vector<int> labels;
     
     NSArray* people = [self getAllPeople];
+    
+    if ([people count] < 2) {
+        return NO;
+    }
     
     for (NSDictionary* person in people) {
         int personID = INT(person[@"id"]);
@@ -179,7 +183,7 @@
 
 - (void)learnFace:(cv::Rect)face ofPersonID:(int)personID fromImage:(cv::Mat&)image
 {
-    cv::Mat faceData = [self pullStandardizedFace:face fromImage:image];
+    cv::Mat faceData = [OpenCVData pullStandardizedFace:face fromImage:image];
     cv::Mat normalizedFaceData;
     cv::normalize(faceData, normalizedFaceData, 0, 255, cv::NORM_MINMAX, CV_8UC1);
     //NSData *serialized = [OpenCVData serializeCvMat:normalizedFaceData];
@@ -192,17 +196,7 @@
     //[serialized writeToFile:fn atomically:YES];
 }
 
-- (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image
-{
-    // Pull the grayscale face ROI out of the captured image
-    cv::Mat onlyTheFace;
-    cv::cvtColor(image(face), onlyTheFace, CV_RGB2GRAY);
-    
-    // Standardize the face to 100x100 pixels
-    cv::resize(onlyTheFace, onlyTheFace, cv::Size(128, 128), 0, 0, cv::INTER_LANCZOS4);
-    
-    return onlyTheFace;
-}
+
 
 - (MultiResult *)recognizeFace:(cv::Rect)face inImage:(cv::Mat&)image
 {
@@ -214,6 +208,7 @@
             RecognitionResult *res = [faceRecognizer recognizeFace:face inImage:image];
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [results addResult:res];
+                NSLog(@"%@ %d", res.method, res.personID);
             });
         });
         
@@ -221,16 +216,8 @@
     
     dispatch_group_wait(recognize_group, DISPATCH_TIME_FOREVER);
 
-    int personID = -1;
-    if (results.personID == self.lastID) {
-        personID = results.personID;
-    } else if (results.personID != self.lastID && self.lastID != -1) {
-        personID = self.lastID;
-    }
-    
-    // If a match was found, lookup the person's name
-    if (personID != -1) {
-        results.personName = [self personName:personID];
+    if (results.personID != -1) {
+        results.personName = [self personName:results.personID];
     }
     
     self.lastID = results.personID;

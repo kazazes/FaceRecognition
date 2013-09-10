@@ -16,7 +16,7 @@ float weighted_average(float a, float b, float weight) {
     if (weight < .8) {
         return b;
     } else if (weight > .9) {
-        weight = .9;
+        weight = 0.9f;
     }
     float avg = b * (1 - weight) + a * weight;
     return avg;
@@ -49,19 +49,20 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    [self setupCamera];
     self.faceDetector = [[FaceDetector alloc] init];
     self.faceRecognizer = [[VotingFaceRecognizer alloc] init];
     
-    [self setupCamera];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.nameListViewContainer.layer.cornerRadius = 50.0f;
-    [self.faceRecognizer trainModel];
     [self.videoCamera start];
+    self.nameListViewContainer.layer.cornerRadius = 50.0f;
+    [self retrainModel:self];
+
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -93,6 +94,7 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
     self.videoCamera.delegate = self;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
+
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     self.videoCamera.defaultFPS = CAPTURE_FPS;
     self.videoCamera.grayscaleMode = NO;
@@ -100,6 +102,8 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
 
 - (void)processImage:(cv::Mat&)image
 {
+    int parse_every = self.learningMode ? 30 : 15;
+    
     if (self.frameNum % 5 == 0) {
         std::vector<cv::Rect> faces = [self.faceDetector facesFromImage:image];
         if (faces.size() == 0) {
@@ -107,13 +111,14 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
             return;
         }
         [self moveDetectionBox:[OpenCVData faceToCGRect:faces[0]]];
-        if (self.frameNum == 5 || [self.personName.text isEqual:@"Unknown"]) {
+        if (self.frameNum % parse_every == 0 || [self.personName.text isEqual:@"Unknown"]) {
             [self parseFaces:faces forImage:image];
         }
-        if (self.frameNum == CAPTURE_FPS) {
-            self.frameNum = 0;
-        }
     }
+    if (self.frameNum % CAPTURE_FPS == 0) {
+        self.frameNum = 0;
+    }
+    
     self.frameNum++;
 }
 
@@ -136,7 +141,7 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
         return;
     }
     MultiResult *match = [self.faceRecognizer recognizeFace:face inImage:image];
-
+    NSLog(@"%d", match.personID);
     if (match.personID != -1) {
         highlightColor = [[UIColor greenColor] CGColor];
     }
@@ -231,7 +236,7 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
     float newwidth;
     float newheight;
     UIImageView *imageView = self.imageView;
-    CGSize imageSize = CGSizeMake(288, 352);
+    CGSize imageSize = CGSizeMake(288,352);
     
     if (imageSize.height>=imageSize.width){
         newheight = imageView.frame.size.height;
@@ -298,7 +303,15 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
 }
 
 - (IBAction)retrainModel:(id)sender {
-    [self.faceRecognizer trainModel];
+    self.hud.text = @"TRAINING MODEL";
+    self.hud.hidden = NO;
+    dispatch_group_t retrain_group = dispatch_group_create();
+    dispatch_group_async(retrain_group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.faceRecognizer trainModel];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.hud.hidden = YES;
+        });
+    });
 }
     
 @end

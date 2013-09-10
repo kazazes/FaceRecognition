@@ -8,19 +8,6 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "FaceRecognition/VotingFaceRecognizer.mm"
-         timestampString = "400390898.022183"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "160"
-         endingLineNumber = "160"
-         landmarkName = "-trainModel"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "FaceRecognition/VotingFaceRecognizer.mm"
          timestampString = "400368138.21823"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
@@ -58,11 +45,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "FaceRecognition/VotingFaceRecognizer.mm"
-         timestampString = "400390898.022183"
+         timestampString = "400399199.706555"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "150"
-         endingLineNumber = "150"
+         startingLineNumber = "154"
+         endingLineNumber = "154"
          landmarkName = "-trainModel"
          landmarkType = "5">
       </FileBreakpoint>
@@ -71,11 +58,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "FaceRecognition/VotingFaceRecognizer.mm"
-         timestampString = "400390898.022183"
+         timestampString = "400399199.706555"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "148"
-         endingLineNumber = "148"
+         startingLineNumber = "152"
+         endingLineNumber = "152"
          landmarkName = "-trainModel"
          landmarkType = "5">
       </FileBreakpoint>
@@ -84,11 +71,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "FaceRecognition/CustomFaceRecognizer.mm"
-         timestampString = "400370395.750037"
+         timestampString = "400442649.437075"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "66"
-         endingLineNumber = "66"
+         startingLineNumber = "69"
+         endingLineNumber = "69"
          landmarkName = "-trainModel:withLabels:"
          landmarkType = "5">
       </FileBreakpoint>
