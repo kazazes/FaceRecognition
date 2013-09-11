@@ -31,7 +31,7 @@ const int kHaarOptions =  CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;
 - (std::vector<cv::Rect>)facesFromImage:(cv::Mat&)image
 {
     std::vector<cv::Rect> faces;
-    _faceCascade.detectMultiScale(image, faces, 1.1, 3, CV_HAAR_DO_CANNY_PRUNING, cv::Size(60, 60));
+    _faceCascade.detectMultiScale(image, faces, 1.1, 4, CV_HAAR_DO_CANNY_PRUNING, cv::Size(60, 60));
     
     return faces;
 }

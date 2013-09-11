@@ -17,7 +17,8 @@
 + (cv::Mat)dataToMat:(NSData *)data width:(int)width height:(int)height;
 + (CGRect)faceToCGRect:(cv::Rect)face;
 + (UIImage *)UIImageFromMat:(cv::Mat)image;
-+ (cv::Mat)cvMatFromUIImage:(UIImage *)image;
-+ (cv::Mat)cvMatFromUIImage:(UIImage *)image usingColorSpace:(int)outputSpace;
+//+ (cv::Mat)cvMatFromUIImage:(UIImage *)image;
+//+ (cv::Mat)cvMatFromUIImage:(UIImage *)image usingColorSpace:(int)outputSpace;
++ (cv::Mat)cvImageNormalize:(cv::Mat)image;
 + (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image;
 @end

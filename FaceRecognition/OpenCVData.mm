@@ -77,55 +77,63 @@
     return finalImage;
 }
 
+//+ (cv::Mat)cvMatFromUIImage:(UIImage *)image
+//{
+//    return [OpenCVData cvMatFromUIImage:image usingColorSpace:CV_RGB2GRAY];
+//}
+
+//+ (cv::Mat)cvMatFromUIImage:(UIImage *)image usingColorSpace:(int)outputSpace
+//{
+//    CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
+//    CGFloat cols = image.size.width;
+//    CGFloat rows = image.size.height;
+//    
+//    cv::Mat cvMat(rows, cols, CV_8UC4);
+//    
+//    CGContextRef contextRef = CGBitmapContextCreate(
+//                                                    cvMat.data,                 // Pointer to  data
+//                                                    cols,                       // Width of bitmap
+//                                                    rows,                       // Height of bitmap
+//                                                    8,                          // Bits per component
+//                                                    cvMat.step[0],              // Bytes per row
+//                                                    colorSpace,                 // Colorspace
+//                                                    kCGImageAlphaNoneSkipLast|kCGBitmapByteOrderDefault // Bitmap info flags
+//                                                    );
+//    
+//    CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), image.CGImage);
+//    CGContextRelease(contextRef);
+//    //CGColorSpaceRelease(colorSpace);
+//    
+//    cv::Mat finalOutput;
+//    cvtColor(cvMat, finalOutput, outputSpace);
+//    
+//    return finalOutput;
+//}
 
 
-
-+ (cv::Mat)cvMatFromUIImage:(UIImage *)image
-{
-    return [OpenCVData cvMatFromUIImage:image usingColorSpace:CV_RGB2GRAY];
++ (cv::Mat)cvImageNormalizeGray:(cv::Mat)image {
+    cv::Mat normImage;
+    cv::equalizeHist(image, normImage);
+    return normImage;
 }
 
-+ (cv::Mat)cvMatFromUIImage:(UIImage *)image usingColorSpace:(int)outputSpace
-{
-    CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
-    CGFloat cols = image.size.width;
-    CGFloat rows = image.size.height;
-    
-    cv::Mat cvMat(rows, cols, CV_8UC4);
-    
-    CGContextRef contextRef = CGBitmapContextCreate(
-                                                    cvMat.data,                 // Pointer to  data
-                                                    cols,                       // Width of bitmap
-                                                    rows,                       // Height of bitmap
-                                                    8,                          // Bits per component
-                                                    cvMat.step[0],              // Bytes per row
-                                                    colorSpace,                 // Colorspace
-                                                    kCGImageAlphaNoneSkipLast|kCGBitmapByteOrderDefault // Bitmap info flags
-                                                    );
-    
-    CGContextDrawImage(contextRef, CGRectMake(0, 0, cols, rows), image.CGImage);
-    CGContextRelease(contextRef);
-    //CGColorSpaceRelease(colorSpace);
-    
-    cv::Mat finalOutput;
-    cvtColor(cvMat, finalOutput, outputSpace);
-    
-    return finalOutput;
-}
 
-+ (void)cvImageNormalize:(cv::Mat)image {
-    
++ (cv::Mat)cvImageNormalize:(cv::Mat)image {
+    cv::Mat grayImage;
+    cv::Mat normImage;
+    cvtColor(image, grayImage, CV_RGB2GRAY);
+    cv::equalizeHist(grayImage, normImage);
+    return normImage;
 }
 
 + (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image
 {
     // Pull the grayscale face ROI out of the captured image
     cv::Mat onlyTheFace;
-    cv::cvtColor(image(face), onlyTheFace, CV_RGB2GRAY);
+    //cv::cvtColor(image(face), onlyTheFace, CV_RGB2GRAY);
+    cv::resize(image(face), onlyTheFace, cv::Size(128, 128), 0, 0, cv::INTER_LANCZOS4);
     
-    cv::resize(onlyTheFace, onlyTheFace, cv::Size(128, 128), 0, 0, cv::INTER_LANCZOS4);
-    
-    return onlyTheFace;
+    return [OpenCVData cvImageNormalize:onlyTheFace];
 }
 
 @end
