@@ -7,24 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34368066177A418100341668 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34368056177A418100341668 /* ELCAlbumPickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		34368067177A418100341668 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 34368058177A418100341668 /* ELCAsset.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		34368068177A418100341668 /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3436805A177A418100341668 /* ELCAssetCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		34368069177A418100341668 /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3436805D177A418100341668 /* ELCAssetTablePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		3436806A177A418100341668 /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3436805F177A418100341668 /* ELCImagePickerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		3436806B177A418100341668 /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34368061177A418100341668 /* ELCAlbumPickerController.xib */; };
-		3436806C177A418100341668 /* ELCAssetPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34368062177A418100341668 /* ELCAssetPicker.xib */; };
-		3436806D177A418100341668 /* ELCAssetTablePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34368063177A418100341668 /* ELCAssetTablePicker.xib */; };
-		3436806E177A418100341668 /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 34368064177A418100341668 /* Overlay.png */; };
-		3436806F177A418100341668 /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34368065177A418100341668 /* Overlay@2x.png */; };
 		4C0B18CA1656724C00A95B1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0B18C91656724C00A95B1E /* AVFoundation.framework */; };
-		4C0B18CD1656766400A95B1E /* CaptureImagesViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B18CC1656766400A95B1E /* CaptureImagesViewController.mm */; };
 		4C0B18D116568A3800A95B1E /* FaceDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B18D016568A3800A95B1E /* FaceDetector.mm */; };
 		4C0B18D416568BAA00A95B1E /* OpenCVData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B18D316568BAA00A95B1E /* OpenCVData.mm */; };
 		4C0B18D61656944400A95B1E /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B18D51656944400A95B1E /* haarcascade_frontalface_alt2.xml */; };
 		4C0B18DD16569E3200A95B1E /* RecognizeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B18DC16569E3100A95B1E /* RecognizeViewController.mm */; };
 		4C9DEA4C1656631B003DBFB5 /* PeopleViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DEA4B1656631B003DBFB5 /* PeopleViewController.mm */; };
-		4C9DEA50165666E2003DBFB5 /* NewPersonViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DEA4F165666E2003DBFB5 /* NewPersonViewController.mm */; };
 		4C9DEA55165668B4003DBFB5 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA51165668B4003DBFB5 /* CoreImage.framework */; };
 		4C9DEA56165668B4003DBFB5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA52165668B4003DBFB5 /* CoreMedia.framework */; };
 		4C9DEA57165668B4003DBFB5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA53165668B4003DBFB5 /* CoreVideo.framework */; };
@@ -32,7 +20,6 @@
 		4C9DEA5A165668BB003DBFB5 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA59165668BB003DBFB5 /* AssetsLibrary.framework */; };
 		4C9DEA5C165668C0003DBFB5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA5B165668C0003DBFB5 /* Accelerate.framework */; };
 		4C9DEA5E165668CD003DBFB5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA5D165668CD003DBFB5 /* libsqlite3.dylib */; };
-		4C9DEA60165668E2003DBFB5 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA5F165668E2003DBFB5 /* opencv2.framework */; };
 		4C9DEA631656694F003DBFB5 /* CustomFaceRecognizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DEA621656694F003DBFB5 /* CustomFaceRecognizer.mm */; };
 		4CBE4D791655CAC8004B63D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBE4D781655CAC8004B63D9 /* UIKit.framework */; };
 		4CBE4D7B1655CAC8004B63D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBE4D7A1655CAC8004B63D9 /* Foundation.framework */; };
@@ -43,29 +30,19 @@
 		4CBE4D8B1655CAC8004B63D9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CBE4D8A1655CAC8004B63D9 /* Default.png */; };
 		4CBE4D8D1655CAC8004B63D9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CBE4D8C1655CAC8004B63D9 /* Default@2x.png */; };
 		4CBE4D8F1655CAC8004B63D9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CBE4D8E1655CAC8004B63D9 /* Default-568h@2x.png */; };
-		4CBE4D921655CAC8004B63D9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CBE4D901655CAC8004B63D9 /* MainStoryboard.storyboard */; };
+		4F7364A817DAA5BE0002A3AA /* haarcascade_frontalface_alt_tree.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364A417DAA5BD0002A3AA /* haarcascade_frontalface_alt_tree.xml */; };
+		4F7364A917DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364A517DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml */; };
+		4F7364AB17DAA5BE0002A3AA /* haarcascade_frontalface_default.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364A717DAA5BE0002A3AA /* haarcascade_frontalface_default.xml */; };
+		4F7364AE17DAA6DD0002A3AA /* VotingFaceRecognizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364AD17DAA6DD0002A3AA /* VotingFaceRecognizer.mm */; };
+		4F7364B117DC22240002A3AA /* RecognitionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364B017DC22240002A3AA /* RecognitionResult.m */; };
+		4F7364B417DC2AF70002A3AA /* MultiResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7364B317DC2AF70002A3AA /* MultiResult.m */; };
+		4F7364BB17DC4F7C0002A3AA /* PersonLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */; };
+		4F7364C217DCA5910002A3AA /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F7364C117DCA5910002A3AA /* opencv2.framework */; };
+		4F7364C617DD3BBA0002A3AA /* IpadBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F7364C517DD3BBA0002A3AA /* IpadBoard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		34368055177A418100341668 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
-		34368056177A418100341668 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
-		34368057177A418100341668 /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
-		34368058177A418100341668 /* ELCAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAsset.m; sourceTree = "<group>"; };
-		34368059177A418100341668 /* ELCAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetCell.h; sourceTree = "<group>"; };
-		3436805A177A418100341668 /* ELCAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetCell.m; sourceTree = "<group>"; };
-		3436805B177A418100341668 /* ELCAssetSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetSelectionDelegate.h; sourceTree = "<group>"; };
-		3436805C177A418100341668 /* ELCAssetTablePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetTablePicker.h; sourceTree = "<group>"; };
-		3436805D177A418100341668 /* ELCAssetTablePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetTablePicker.m; sourceTree = "<group>"; };
-		3436805E177A418100341668 /* ELCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerController.h; sourceTree = "<group>"; };
-		3436805F177A418100341668 /* ELCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCImagePickerController.m; sourceTree = "<group>"; };
-		34368061177A418100341668 /* ELCAlbumPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAlbumPickerController.xib; sourceTree = "<group>"; };
-		34368062177A418100341668 /* ELCAssetPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAssetPicker.xib; sourceTree = "<group>"; };
-		34368063177A418100341668 /* ELCAssetTablePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAssetTablePicker.xib; sourceTree = "<group>"; };
-		34368064177A418100341668 /* Overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Overlay.png; sourceTree = "<group>"; };
-		34368065177A418100341668 /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Overlay@2x.png"; sourceTree = "<group>"; };
 		4C0B18C91656724C00A95B1E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		4C0B18CB1656766400A95B1E /* CaptureImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureImagesViewController.h; sourceTree = "<group>"; };
-		4C0B18CC1656766400A95B1E /* CaptureImagesViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CaptureImagesViewController.mm; sourceTree = "<group>"; };
 		4C0B18CF16568A3800A95B1E /* FaceDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetector.h; sourceTree = "<group>"; };
 		4C0B18D016568A3800A95B1E /* FaceDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceDetector.mm; sourceTree = "<group>"; };
 		4C0B18D216568BAA00A95B1E /* OpenCVData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVData.h; sourceTree = "<group>"; };
@@ -75,8 +52,6 @@
 		4C0B18DC16569E3100A95B1E /* RecognizeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RecognizeViewController.mm; sourceTree = "<group>"; };
 		4C9DEA4A1656631B003DBFB5 /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
 		4C9DEA4B1656631B003DBFB5 /* PeopleViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PeopleViewController.mm; sourceTree = "<group>"; };
-		4C9DEA4E165666E2003DBFB5 /* NewPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPersonViewController.h; sourceTree = "<group>"; };
-		4C9DEA4F165666E2003DBFB5 /* NewPersonViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NewPersonViewController.mm; sourceTree = "<group>"; };
 		4C9DEA51165668B4003DBFB5 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		4C9DEA52165668B4003DBFB5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		4C9DEA53165668B4003DBFB5 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -84,7 +59,6 @@
 		4C9DEA59165668BB003DBFB5 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4C9DEA5B165668C0003DBFB5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		4C9DEA5D165668CD003DBFB5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		4C9DEA5F165668E2003DBFB5 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		4C9DEA611656694F003DBFB5 /* CustomFaceRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFaceRecognizer.h; sourceTree = "<group>"; };
 		4C9DEA621656694F003DBFB5 /* CustomFaceRecognizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CustomFaceRecognizer.mm; sourceTree = "<group>"; };
 		4CBE4D741655CAC8004B63D9 /* FaceRecognition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FaceRecognition.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +74,18 @@
 		4CBE4D8A1655CAC8004B63D9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4CBE4D8C1655CAC8004B63D9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4CBE4D8E1655CAC8004B63D9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		4CBE4D911655CAC8004B63D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		4F7364A417DAA5BD0002A3AA /* haarcascade_frontalface_alt_tree.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt_tree.xml; sourceTree = "<group>"; };
+		4F7364A517DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt.xml; sourceTree = "<group>"; };
+		4F7364A717DAA5BE0002A3AA /* haarcascade_frontalface_default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_default.xml; sourceTree = "<group>"; };
+		4F7364AC17DAA6DD0002A3AA /* VotingFaceRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VotingFaceRecognizer.h; sourceTree = "<group>"; };
+		4F7364AD17DAA6DD0002A3AA /* VotingFaceRecognizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VotingFaceRecognizer.mm; sourceTree = "<group>"; };
+		4F7364AF17DC22240002A3AA /* RecognitionResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecognitionResult.h; sourceTree = "<group>"; };
+		4F7364B017DC22240002A3AA /* RecognitionResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognitionResult.m; sourceTree = "<group>"; };
+		4F7364B217DC2AF70002A3AA /* MultiResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiResult.h; sourceTree = "<group>"; };
+		4F7364B317DC2AF70002A3AA /* MultiResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiResult.m; sourceTree = "<group>"; };
+		4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonLabel.xib; sourceTree = "<group>"; };
+		4F7364C117DCA5910002A3AA /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		4F7364C517DD3BBA0002A3AA /* IpadBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IpadBoard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,53 +104,13 @@
 				4CBE4D791655CAC8004B63D9 /* UIKit.framework in Frameworks */,
 				4CBE4D7B1655CAC8004B63D9 /* Foundation.framework in Frameworks */,
 				4CBE4D7D1655CAC8004B63D9 /* CoreGraphics.framework in Frameworks */,
-				4C9DEA60165668E2003DBFB5 /* opencv2.framework in Frameworks */,
+				4F7364C217DCA5910002A3AA /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		34368053177A416B00341668 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				34368054177A418100341668 /* ELCImagePicker */,
-			);
-			name = Vendor;
-			sourceTree = "<group>";
-		};
-		34368054177A418100341668 /* ELCImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				34368055177A418100341668 /* ELCAlbumPickerController.h */,
-				34368056177A418100341668 /* ELCAlbumPickerController.m */,
-				34368057177A418100341668 /* ELCAsset.h */,
-				34368058177A418100341668 /* ELCAsset.m */,
-				34368059177A418100341668 /* ELCAssetCell.h */,
-				3436805A177A418100341668 /* ELCAssetCell.m */,
-				3436805B177A418100341668 /* ELCAssetSelectionDelegate.h */,
-				3436805C177A418100341668 /* ELCAssetTablePicker.h */,
-				3436805D177A418100341668 /* ELCAssetTablePicker.m */,
-				3436805E177A418100341668 /* ELCImagePickerController.h */,
-				3436805F177A418100341668 /* ELCImagePickerController.m */,
-				34368060177A418100341668 /* Resources */,
-			);
-			name = ELCImagePicker;
-			path = Vendor/ELCImagePickerController/Classes/ELCImagePicker;
-			sourceTree = "<group>";
-		};
-		34368060177A418100341668 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				34368061177A418100341668 /* ELCAlbumPickerController.xib */,
-				34368062177A418100341668 /* ELCAssetPicker.xib */,
-				34368063177A418100341668 /* ELCAssetTablePicker.xib */,
-				34368064177A418100341668 /* Overlay.png */,
-				34368065177A418100341668 /* Overlay@2x.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		4C0B18CE1656780900A95B1E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,10 +118,6 @@
 				4C0B18DC16569E3100A95B1E /* RecognizeViewController.mm */,
 				4C9DEA4A1656631B003DBFB5 /* PeopleViewController.h */,
 				4C9DEA4B1656631B003DBFB5 /* PeopleViewController.mm */,
-				4C9DEA4E165666E2003DBFB5 /* NewPersonViewController.h */,
-				4C9DEA4F165666E2003DBFB5 /* NewPersonViewController.mm */,
-				4C0B18CB1656766400A95B1E /* CaptureImagesViewController.h */,
-				4C0B18CC1656766400A95B1E /* CaptureImagesViewController.mm */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -201,7 +142,7 @@
 		4CBE4D771655CAC8004B63D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4C9DEA5F165668E2003DBFB5 /* opencv2.framework */,
+				4F7364C117DCA5910002A3AA /* opencv2.framework */,
 				4C9DEA5D165668CD003DBFB5 /* libsqlite3.dylib */,
 				4C0B18C91656724C00A95B1E /* AVFoundation.framework */,
 				4C9DEA5B165668C0003DBFB5 /* Accelerate.framework */,
@@ -220,26 +161,25 @@
 		4CBE4D7E1655CAC8004B63D9 /* FaceRecognition */ = {
 			isa = PBXGroup;
 			children = (
-				34368053177A416B00341668 /* Vendor */,
-				4CBE4D871655CAC8004B63D9 /* AppDelegate.h */,
-				4CBE4D881655CAC8004B63D9 /* AppDelegate.m */,
-				4CBE4D901655CAC8004B63D9 /* MainStoryboard.storyboard */,
-				4C0B18CF16568A3800A95B1E /* FaceDetector.h */,
-				4C0B18D016568A3800A95B1E /* FaceDetector.mm */,
-				4C9DEA611656694F003DBFB5 /* CustomFaceRecognizer.h */,
-				4C9DEA621656694F003DBFB5 /* CustomFaceRecognizer.mm */,
+				4F7364C317DCD22C0002A3AA /* Data Classes */,
+				4F7364C417DCD25B0002A3AA /* UI */,
 				4C0B18CE1656780900A95B1E /* View Controllers */,
-				4CBE4D7F1655CAC8004B63D9 /* Supporting Files */,
-				4C0B18D216568BAA00A95B1E /* OpenCVData.h */,
-				4C0B18D316568BAA00A95B1E /* OpenCVData.mm */,
-				4C0B18D51656944400A95B1E /* haarcascade_frontalface_alt2.xml */,
+				4CBE4D7F1655CAC8004B63D9 /* Support */,
 			);
 			path = FaceRecognition;
 			sourceTree = "<group>";
 		};
-		4CBE4D7F1655CAC8004B63D9 /* Supporting Files */ = {
+		4CBE4D7F1655CAC8004B63D9 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				4C0B18D216568BAA00A95B1E /* OpenCVData.h */,
+				4C0B18D316568BAA00A95B1E /* OpenCVData.mm */,
+				4F7364A417DAA5BD0002A3AA /* haarcascade_frontalface_alt_tree.xml */,
+				4F7364A517DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml */,
+				4F7364A717DAA5BE0002A3AA /* haarcascade_frontalface_default.xml */,
+				4C0B18D51656944400A95B1E /* haarcascade_frontalface_alt2.xml */,
+				4CBE4D871655CAC8004B63D9 /* AppDelegate.h */,
+				4CBE4D881655CAC8004B63D9 /* AppDelegate.m */,
 				4CBE4D801655CAC8004B63D9 /* FaceRecognition-Info.plist */,
 				4CBE4D811655CAC8004B63D9 /* InfoPlist.strings */,
 				4CBE4D841655CAC8004B63D9 /* main.m */,
@@ -248,7 +188,33 @@
 				4CBE4D8C1655CAC8004B63D9 /* Default@2x.png */,
 				4CBE4D8E1655CAC8004B63D9 /* Default-568h@2x.png */,
 			);
-			name = "Supporting Files";
+			name = Support;
+			sourceTree = "<group>";
+		};
+		4F7364C317DCD22C0002A3AA /* Data Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4F7364AF17DC22240002A3AA /* RecognitionResult.h */,
+				4F7364B017DC22240002A3AA /* RecognitionResult.m */,
+				4F7364B217DC2AF70002A3AA /* MultiResult.h */,
+				4F7364B317DC2AF70002A3AA /* MultiResult.m */,
+				4C0B18CF16568A3800A95B1E /* FaceDetector.h */,
+				4C0B18D016568A3800A95B1E /* FaceDetector.mm */,
+				4C9DEA611656694F003DBFB5 /* CustomFaceRecognizer.h */,
+				4C9DEA621656694F003DBFB5 /* CustomFaceRecognizer.mm */,
+				4F7364AC17DAA6DD0002A3AA /* VotingFaceRecognizer.h */,
+				4F7364AD17DAA6DD0002A3AA /* VotingFaceRecognizer.mm */,
+			);
+			name = "Data Classes";
+			sourceTree = "<group>";
+		};
+		4F7364C417DCD25B0002A3AA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */,
+				4F7364C517DD3BBA0002A3AA /* IpadBoard.storyboard */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +243,7 @@
 		4CBE4D6B1655CAC8004B63D9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = 4CBE4D6E1655CAC8004B63D9 /* Build configuration list for PBXProject "FaceRecognition" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -305,13 +271,12 @@
 				4CBE4D8B1655CAC8004B63D9 /* Default.png in Resources */,
 				4CBE4D8D1655CAC8004B63D9 /* Default@2x.png in Resources */,
 				4CBE4D8F1655CAC8004B63D9 /* Default-568h@2x.png in Resources */,
-				4CBE4D921655CAC8004B63D9 /* MainStoryboard.storyboard in Resources */,
 				4C0B18D61656944400A95B1E /* haarcascade_frontalface_alt2.xml in Resources */,
-				3436806B177A418100341668 /* ELCAlbumPickerController.xib in Resources */,
-				3436806C177A418100341668 /* ELCAssetPicker.xib in Resources */,
-				3436806D177A418100341668 /* ELCAssetTablePicker.xib in Resources */,
-				3436806E177A418100341668 /* Overlay.png in Resources */,
-				3436806F177A418100341668 /* Overlay@2x.png in Resources */,
+				4F7364A817DAA5BE0002A3AA /* haarcascade_frontalface_alt_tree.xml in Resources */,
+				4F7364A917DAA5BE0002A3AA /* haarcascade_frontalface_alt.xml in Resources */,
+				4F7364AB17DAA5BE0002A3AA /* haarcascade_frontalface_default.xml in Resources */,
+				4F7364BB17DC4F7C0002A3AA /* PersonLabel.xib in Resources */,
+				4F7364C617DD3BBA0002A3AA /* IpadBoard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,16 +291,12 @@
 				4CBE4D891655CAC8004B63D9 /* AppDelegate.m in Sources */,
 				4C9DEA631656694F003DBFB5 /* CustomFaceRecognizer.mm in Sources */,
 				4C9DEA4C1656631B003DBFB5 /* PeopleViewController.mm in Sources */,
-				4C9DEA50165666E2003DBFB5 /* NewPersonViewController.mm in Sources */,
-				4C0B18CD1656766400A95B1E /* CaptureImagesViewController.mm in Sources */,
 				4C0B18D116568A3800A95B1E /* FaceDetector.mm in Sources */,
 				4C0B18D416568BAA00A95B1E /* OpenCVData.mm in Sources */,
 				4C0B18DD16569E3200A95B1E /* RecognizeViewController.mm in Sources */,
-				34368066177A418100341668 /* ELCAlbumPickerController.m in Sources */,
-				34368067177A418100341668 /* ELCAsset.m in Sources */,
-				34368068177A418100341668 /* ELCAssetCell.m in Sources */,
-				34368069177A418100341668 /* ELCAssetTablePicker.m in Sources */,
-				3436806A177A418100341668 /* ELCImagePickerController.m in Sources */,
+				4F7364AE17DAA6DD0002A3AA /* VotingFaceRecognizer.mm in Sources */,
+				4F7364B117DC22240002A3AA /* RecognitionResult.m in Sources */,
+				4F7364B417DC2AF70002A3AA /* MultiResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,14 +311,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		4CBE4D901655CAC8004B63D9 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4CBE4D911655CAC8004B63D9 /* en */,
-			);
-			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -365,25 +318,41 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_FAST_MATH = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LLVM_LTO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -392,19 +361,34 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_FAST_MATH = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LLVM_LTO = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -417,10 +401,17 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				GCC_FAST_MATH = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceRecognition/FaceRecognition-Prefix.pch";
+				GCC_UNROLL_LOOPS = YES;
+				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "FaceRecognition/FaceRecognition-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LLVM_LTO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -432,10 +423,17 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				GCC_FAST_MATH = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FaceRecognition/FaceRecognition-Prefix.pch";
+				GCC_UNROLL_LOOPS = YES;
+				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "FaceRecognition/FaceRecognition-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LLVM_LTO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -12,9 +12,13 @@
 @interface OpenCVData : NSObject
 
 + (NSData *)serializeCvMat:(cv::Mat&)cvMat;
-+ (cv::Mat)dataToMat:(NSData *)data width:(NSNumber *)width height:(NSNumber *)height;
++ (void)writeCvMat:(cv::Mat&)cvMat toPath:(NSString*)path;
++ (cv::Mat)readImageToCvMat:(NSString*)path;
++ (cv::Mat)dataToMat:(NSData *)data width:(int)width height:(int)height;
 + (CGRect)faceToCGRect:(cv::Rect)face;
 + (UIImage *)UIImageFromMat:(cv::Mat)image;
-+ (cv::Mat)cvMatFromUIImage:(UIImage *)image;
-+ (cv::Mat)cvMatFromUIImage:(UIImage *)image usingColorSpace:(int)outputSpace;
+//+ (cv::Mat)cvMatFromUIImage:(UIImage *)image;
+//+ (cv::Mat)cvMatFromUIImage:(UIImage *)image usingColorSpace:(int)outputSpace;
++ (cv::Mat)cvImageNormalize:(cv::Mat)image;
++ (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image;
 @end

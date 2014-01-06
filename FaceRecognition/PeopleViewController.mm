@@ -7,7 +7,7 @@
 //
 
 #import "PeopleViewController.h"
-#import "CaptureImagesViewController.h"
+#import "RecognizeViewController.h"
 
 @interface PeopleViewController ()
 
@@ -18,14 +18,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.faceRecognizer = [[CustomFaceRecognizer alloc] init];
+    self.faceRecognizer = [[VotingFaceRecognizer alloc] init];
+    NSLog(@"Passing self up");
+    //[(RecognizeViewController*)[self parentViewController] pvc:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [(RecognizeViewController*)[self parentViewController] pvc:self];
     self.people = [self.faceRecognizer getAllPeople];
+    [self.tableView reloadData];
+}
+
+- (void)reloadPeople {
+    self.people = [NSMutableArray arrayWithArray:[self.faceRecognizer getAllPeople]];
     [self.tableView reloadData];
 }
 
@@ -55,18 +62,40 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = [indexPath row];
-    self.selectedPerson = [self.people objectAtIndex:row];
-    
-    [self performSegueWithIdentifier:@"CaptureImages" sender:self];
+    NSDictionary* selectedPerson = [self.people objectAtIndex:row];
+    [(RecognizeViewController*)[self parentViewController]  learnFace:INT(selectedPerson[@"id"])];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    CaptureImagesViewController *destination = segue.destinationViewController;
+    RecognizeViewController *destination = segue.destinationViewController;
     
     if (self.selectedPerson) {
-        destination.personID = [self.selectedPerson objectForKey:@"id"];
-        destination.personName = [self.selectedPerson objectForKey:@"name"];
+        destination.learningPersonID = INT(self.selectedPerson[@"id"]);
+        destination.learningMode = YES;
+        destination.personName = self.selectedPerson[@"name"];
+    }
+}
+
+- (IBAction)setEditMode:(UIBarButtonItem *)sender {
+    if (self.editing) {
+        sender.title = @"Edit";
+        [super setEditing:NO animated:YES];
+    } else {
+        sender.title = @"Done";
+        [super setEditing:YES animated:YES];
+    }
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = [indexPath row];
+    NSDictionary* selectedPerson = [self.people objectAtIndex:row];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [(RecognizeViewController*)[self parentViewController] removeUser:INT(selectedPerson[@"id"])];
+        [self.people removeObjectAtIndex:row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 
