@@ -211,8 +211,8 @@
 		4F7364C417DCD25B0002A3AA /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */,
 				4F7364C517DD3BBA0002A3AA /* IpadBoard.storyboard */,
+				4F7364BA17DC4F7C0002A3AA /* PersonLabel.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -244,6 +244,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					4CBE4D731655CAC8004B63D9 = {
+						DevelopmentTeam = 2QWAYJ48YS;
+					};
+				};
 			};
 			buildConfigurationList = 4CBE4D6E1655CAC8004B63D9 /* Build configuration list for PBXProject "FaceRecognition" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -397,6 +402,7 @@
 		4CBE4D991655CAC8004B63D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -411,7 +417,7 @@
 				LLVM_LTO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -419,6 +425,7 @@
 		4CBE4D9A1655CAC8004B63D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -433,7 +440,7 @@
 				LLVM_LTO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

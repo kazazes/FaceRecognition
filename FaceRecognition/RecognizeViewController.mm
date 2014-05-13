@@ -141,6 +141,12 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
         return;
     }
     MultiResult *match = [self.faceRecognizer recognizeFace:face inImage:image];
+    
+    
+    RecognitionResult* result = match.results[0];
+    
+    NSLog(@"YO YO I'M GOT: %f", result.confidence);
+    
     NSLog(@"%d", match.personID);
     if (match.personID != -1) {
         highlightColor = [[UIColor greenColor] CGColor];

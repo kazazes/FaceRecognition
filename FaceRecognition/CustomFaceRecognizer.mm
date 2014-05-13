@@ -80,7 +80,7 @@
     double confidence = 0.0;
     if (self.trained)
         _model->predict([OpenCVData pullStandardizedFace:face fromImage:image], predictedLabel, confidence);
-    
+        NSLog(@"confidence %f", confidence);
     return [[RecognitionResult alloc] initWithPersonID:predictedLabel confidence:confidence method:self.method];
 }
 
