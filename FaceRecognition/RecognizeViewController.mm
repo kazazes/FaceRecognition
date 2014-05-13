@@ -143,12 +143,13 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
     MultiResult *match = [self.faceRecognizer recognizeFace:face inImage:image];
     
     
+    // We only care about the first result
     RecognitionResult* result = match.results[0];
     
-    NSLog(@"YO YO I'M GOT: %f", result.confidence);
+    NSLog(@"confidence: %f", result.confidence);
     
     NSLog(@"%d", match.personID);
-    if (match.personID != -1) {
+    if (match.personID != -1 && result.confidence < 50.00) {
         highlightColor = [[UIColor greenColor] CGColor];
     }
 
@@ -156,7 +157,7 @@ CGRect CGRectAverage(CGRect a, CGRect b) {
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self highlightFace:[OpenCVData faceToCGRect:face] withColor:highlightColor];
         [self.personName setText: match.personName];
-        if (match.personID != -1)
+        if (match.personID != -1 && result.confidence < 50.00)
             self.personLabel.hidden = NO;
         else
             self.personLabel.hidden = YES;
