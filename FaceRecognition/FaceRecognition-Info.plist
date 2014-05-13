@@ -24,6 +24,8 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMainNibFile~ipad</key>
+	<string>IpadBoard-iPad</string>
 	<key>UIMainStoryboardFile</key>
 	<string>IpadBoard</string>
 	<key>UIRequiredDeviceCapabilities</key>

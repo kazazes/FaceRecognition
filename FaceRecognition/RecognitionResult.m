@@ -3,7 +3,7 @@
 //  FaceRecognition
 //
 //  Created by Justin Van Winkle on 9/7/13.
-//
+//  Updated by Patrick Reilly on 2014-05-13.
 //
 
 #import "RecognitionResult.h"

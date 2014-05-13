@@ -3,7 +3,7 @@
 //  FaceRecognition
 //
 //  Created by Michael Peterson on 2012-11-16.
-//
+//  Updated by Patrick Reilly on 2014-05-13.
 //
 
 #import "CustomFaceRecognizer.h"
@@ -80,7 +80,6 @@
     double confidence = 0.0;
     if (self.trained)
         _model->predict([OpenCVData pullStandardizedFace:face fromImage:image], predictedLabel, confidence);
-    
     return [[RecognitionResult alloc] initWithPersonID:predictedLabel confidence:confidence method:self.method];
 }
 
